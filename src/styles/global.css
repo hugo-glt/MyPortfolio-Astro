@@ -1,1 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Stack+Sans+Notch:wght@200..700&family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
 @import "tailwindcss";
+
+:root {
+    --font-heading: 'Stack Sans Notch', sans-serif;
+    --font-body: 'Archivo Narrow', sans-serif;
+
+    --color-primary-900: #618264;
+    --color-primary-500: #79AC78;
+    --color-primary-100: #B0D9B1;
+
+    --color-secondary-500: #F39E60;
+    --color-secondary-300: #F9F5F0;
+}
