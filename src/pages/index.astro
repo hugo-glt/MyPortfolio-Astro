@@ -6,6 +6,10 @@ import Style from '../styles/global.css';
 import SettingsIcon from '../assets/assets_portfolio/settings.svg';	
 import Indicator from '../assets/assets_portfolio/indicator-down.svg';
 import ProjectGrid from '../components/ProjectGrid.astro';
+import ProfilePic from '../assets/assets_portfolio/profile-circle.svg';
+import Gitlogo from '../assets/assets_portfolio/GitHub_Lockup_Black_Clearspace.svg';
+import LinkedinLogo from '../assets/assets_portfolio/linkedin.svg';
+import TopPage from '../assets/assets_portfolio/arrow-up.svg';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -68,7 +72,38 @@ import ProjectGrid from '../components/ProjectGrid.astro';
 	</section>
 
 	<section>
-
+		<div>
+			<h3>CONTACTS</h3>
+			<hr>
+		</div>
+		<div>
+			<img src={ProfilePic.src} class="w-25 h-25 rounded-full" alt="Profile Picture" />
+			<div>
+				<span>
+				lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				</span>
+				<div>
+					<img src={Gitlogo.src} class="w-15 h-15" alt="GitHub Logo" />
+					<img src={LinkedinLogo.src} class="w-15 h-15" alt="LinkedIn Logo" />
+				</div>
+			</div>
+		</div>
+		<div>
+			<span>
+				SEND ME A MESSAGE !
+			</span>
+			<form>
+				<input type="email" placeholder="Your Email" />
+				<textarea placeholder="Your Message"></textarea>
+				<button type="submit">Send</button>
+			</form>
+		</div>
+		<div>
+			<span>
+				SCROLL TO TOP
+			</span>
+			<img src={TopPage.src} class="w-8 h-8" alt="Scroll to Top" />
+		</div>
 	</section>
 	<NavBar />
 </Layout>
