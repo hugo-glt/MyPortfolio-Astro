@@ -1,11 +1,23 @@
 ---
 import NavBar from '../components/NavBar.astro';
 import Layout from '../layouts/Layout.astro';
+import ProfilePicture from '../assets/assets_images/placeholder-1.png';
+import Style from '../styles/global.css';
+import SettingsIcon from '../assets/assets_portfolio/settings.svg';	
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
+	<section>
+		<!-- Astro image imports return metadata; use the .src property for the img src -->
+		<img src={ProfilePicture.src} alt="Profile Picture" />
+		<div>
+			<h1>HUGO</h1>
+			<h1>GILET</h1>
+			<h3>DEVELOPPEUR</h3>
+		</div>
+	</section>
 	<NavBar />
 </Layout>
