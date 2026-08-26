@@ -5,6 +5,7 @@ import Placeholder from '../assets/assets_images/placeholder-1.png';
 import Style from '../styles/global.css';
 import SettingsIcon from '../assets/assets_portfolio/settings.svg';	
 import Indicator from '../assets/assets_portfolio/indicator-down.svg';
+import ProjectGrid from '../components/ProjectGrid.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -39,6 +40,25 @@ import Indicator from '../assets/assets_portfolio/indicator-down.svg';
 			</span>
 			<img src={Indicator.src} alt="Indicator_More_Details" />
 		</div>
+	</section>
+
+	<section>
+		<div>
+			<h3>PROJECTS</h3>
+			<hr>
+			<span>
+				lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+			</span>
+		</div>
+		<section>
+            <ProjectGrid projects={[
+  			{ id: 'a', href: '/projects/projet-a', image: Placeholder.src, title: 'Projet A', category: 'Web' },
+  			{ id: 'b', href: '/projects/projet-b', image: Placeholder.src, title: 'Projet B', category: 'Mobile' },
+  			{ id: 'c', href: '/projects/projet-c', image: Placeholder.src, title: 'Projet C', category: 'API' },
+  			{ id: 'd', href: '/projects/projet-d', image: Placeholder.src, title: 'Projet D', category: 'Design' },
+  			{ id: 'e', href: '/projects/projet-e', image: Placeholder.src, title: 'Projet E', category: 'Web' },
+		]} />
+		</section>
 	</section>
 	<NavBar />
 </Layout>

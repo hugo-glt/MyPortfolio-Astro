@@ -1,0 +1,37 @@
+---
+import type { ImageMetadata } from 'astro';
+
+interface Project {
+    id: 'a' | 'b' | 'c' | 'd' | 'e';
+    href: string;
+    image: ImageMetadata;
+    title: string;
+    category: string;
+}
+const { projects } = Astro.props;
+---
+
+<div class="project-grid">
+    {projects.map((p: Project) => (
+        <a href={p.href} class={`project-card project-${p.id} relative block overflow-hidden rounded-lg`}>
+            <img src={p.image.src} alt="" class="w-full h-full object-cover" />
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-linear-to-t from-black/70 to-transparent text-white">
+                <h3 class="font-heading text-sm font-semibold">{p.title}</h3>
+                <p class="font-body text-xs opacity-90">{p.category}</p>
+            </div>
+        </a>
+    ))}
+</div>
+
+<style>
+    .project-grid {
+        display: grid;
+        grid-template-columns: 60% 40%;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 5px;
+        background: var(--color-primary-900);
+        padding: 5px;
+        border-radius: 12px;
+        min-height: 600px;
+    }
+</style>
