@@ -10,6 +10,7 @@ import ProfilePic from '../assets/assets_portfolio/profile-circle.svg';
 import Gitlogo from '../assets/assets_portfolio/GitHub_Lockup_Black_Clearspace.svg';
 import LinkedinLogo from '../assets/assets_portfolio/linkedin.svg';
 import TopPage from '../assets/assets_portfolio/arrow-up.svg';
+import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -28,21 +29,21 @@ import TopPage from '../assets/assets_portfolio/arrow-up.svg';
 	</section>
 
 	<section class="mt-40">
-		<div class="flex justify-center"> 
-			<h3>PRESENTATION</h3>
+		<div class="flex w-fit flex-col items-center mx-auto">
+			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PRESENTATION</h3>
+			<div class="mt-5 h-1 w-[80%] bg-black"></div>
+		</div>
+		<div  class="mx-auto mt-20 flex max-w-7xl flex-col items-center gap-10 px-6 md:flex-row md:items-center md:gap-50">
+			<div  class="shrink-0">
+				<img src={ResumePlaceholder.src} alt="Resume" class="h-auto w-[clamp(400px,25vw,600px)]"/>
+			</div>
 			<div>
-				<hr class="w-1/2 border-t-2 border-primary-900"/>
+				<span class="text-2xl">lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</span>
 			</div>
 		</div>
-		<div class="mt-15">
-			<img src={Placeholder.src} alt="Resume" />
-		</div>
-		<div>
-			<span>lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</span>
-		</div>
-		<div>
-			<span>
+		<div class="flex flex-col items-center justify-center mt-20">
+			<span class="font-bold">
 				MORE DETAILS
 			</span>
 			<img src={Indicator.src} alt="Indicator_More_Details" class="w-8 h-8"/>
@@ -51,8 +52,8 @@ import TopPage from '../assets/assets_portfolio/arrow-up.svg';
 
 	<section>
 		<div>
-			<h3>PROJECTS</h3>
-			<hr>
+			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PROJECTS</h3>
+			<div class="mt-5 h-1 w-[80%] bg-black"></div>
 			<span>
 				lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 			</span>
@@ -76,8 +77,8 @@ import TopPage from '../assets/assets_portfolio/arrow-up.svg';
 
 	<section>
 		<div>
-			<h3>CONTACTS</h3>
-			<hr>
+			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)]">CONTACTS</h3>
+			<div class="mt-5 h-1 w-[80%] bg-black"></div>
 		</div>
 		<div>
 			<img src={ProfilePic.src} class="w-25 h-25 rounded-full" alt="Profile Picture" />
