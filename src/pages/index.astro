@@ -19,20 +19,22 @@ import TopPage from '../assets/assets_portfolio/arrow-up.svg';
 	<section>
 		<div>
 			<img src={Placeholder.src} alt="Profile Picture" class="relative w-full"/>
-			<div class="absolute left-10 top-1/2 -translate-y-1/2 text-5xl font-bold">
-				<h1>HUGO</h1>
-				<h1>GILET</h1>
-				<h3>DEVELOPPEUR</h3>
+			<div class="absolute left-[3%] top-1/2 -translate-y-1/2 font-bold">
+            <h1 class="text-[clamp(2.5rem,8vw,12rem)] leading-none">HUGO</h1>
+            <h1 class="text-[clamp(2.5rem,8vw,12em)] leading-none">GILET</h1>
+            <h3 class="mt-2 text-[clamp(1rem,3vw,5rem)]">DEVELOPER</h3>
 			</div>
 		</div>
 	</section>
 
-	<section>
-		<div> 
+	<section class="mt-40">
+		<div class="flex justify-center"> 
 			<h3>PRESENTATION</h3>
-			<hr>
+			<div>
+				<hr class="w-1/2 border-t-2 border-primary-900"/>
+			</div>
 		</div>
-		<div>
+		<div class="mt-15">
 			<img src={Placeholder.src} alt="Resume" />
 		</div>
 		<div>
