@@ -77,30 +77,34 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 
 	<section class="mt-20">
 		<div class="flex flex-col items-center justify-center">
-			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)]">CONTACTS</h3>
-			<div class="mt-5 h-1 w-[80%] bg-black"></div>
-		</div>
-		<div class="flex flex-col items-center justify-center mt-20">
-			<img src={ProfilePic.src} class="w-25 h-25 rounded-full" alt="Profile Picture" />
-			<div>
-				<span>
-				lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-				</span>
-				<div>
-					<img src={Gitlogo.src} class="w-15 h-15" alt="GitHub Logo" />
-					<img src={LinkedinLogo.src} class="w-15 h-15" alt="LinkedIn Logo" />
-				</div>
+			<div class="flex flex-col w-fit items-center justify-center">
+				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">CONTACTS</h3>
+				<div class="mt-5 h-1 w-[80%] bg-black"></div>
 			</div>
 		</div>
-		<div class="flex flex-col items-center justify-center mt-20">
-			<span>
-				SEND ME A MESSAGE !
-			</span>
-			<form>
-				<input type="email" placeholder="Your Email" />
-				<textarea placeholder="Your Message"></textarea>
-				<button type="submit">Send</button>
-			</form>
+		<div class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
+			<div class="flex flex-col items-center justify-center mt-20">
+				<img src={ProfilePic.src} class="w-25 h-25 rounded-full" alt="Profile Picture" />
+				<div class="mt-14">
+					<span class="mx-auto max-w-md text-center">
+					lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					</span>
+					<div class="flex items-center justify-center gap-5 mt-5">
+						<img src={Gitlogo.src} class="w-30 h-30" alt="GitHub Logo" />
+						<img src={LinkedinLogo.src} class="w-10 h-10" alt="LinkedIn Logo" />
+					</div>
+				</div>
+			</div>
+			<div class="flex flex-col items-center justify-center mt-20">
+				<span class="font-bold">
+					SEND ME A MESSAGE !
+				</span>
+				<form class="mt-8 flex w-full max-w-md flex-col gap-5">
+					<input type="email" placeholder="Your Email" class="bg-gray-200 text-gray-800 placeholder:text-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+					<textarea placeholder="Your Message" class="bg-gray-200 text-gray-800 placeholder:text-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+					<button type="submit" class="bg-black text-white py-2 px-4 rounded">Send</button>
+				</form>
+			</div>
 		</div>
 		<div>
 			<span>
