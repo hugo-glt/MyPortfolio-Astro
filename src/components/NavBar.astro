@@ -15,39 +15,60 @@ import settingsIcon from '../assets/assets_portfolio/settings.svg';
 </nav>
 
 <script>
-  // IntersectionObserver sur #hero
     const hero = document.getElementById('hero');
     const navbar = document.getElementById('navbar');
     
-    if (hero && navbar) {
-    const observer = new IntersectionObserver((entries) => {
+        if (hero && navbar) {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-          // Hero hors écran → navbar en haut
-            navbar.classList.add('scrolled');
-        } else {
-          // Hero visible → navbar en bas
-            navbar.classList.remove('scrolled');
-        }
+                    navbar.classList.add('transitioning');
+                    navbar.offsetHeight;
 
-                navbar.dispatchEvent(new CustomEvent('navbar-position-change', {
-                    detail: { atTop: !entry.isIntersecting }
-                }));
-        });
-    }, { threshold: 0 }); // Déclenche dès qu'1px du hero sort
-    
-    observer.observe(hero);
-    }
+                    if (!entry.isIntersecting) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+
+                    navbar.dispatchEvent(new CustomEvent('navbar-position-change', {
+                        detail: { atTop: !entry.isIntersecting }
+                    }));
+
+                    setTimeout(() => {
+                        navbar.classList.remove('transitioning');
+                    }, 550);
+                });
+            }, { threshold: 0 });
+
+            observer.observe(hero);
+        }
     
 </script>
 
 <style>
     .navbar {
-        transition: top 0.35s ease, bottom 0.35s ease;
+    transition: 
+        transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.25s ease,
+        top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 1;
+    background-color: var(--color-primary-900);
     }
-
+    .navbar {
+    top: auto;
+    bottom: 0;
+    opacity: 1;
+    background-color: var(--color-primary-900);
+    }
     .navbar.scrolled {
-        top: 0;
-        bottom: auto;
+    top: 0;
+    bottom: auto;
+    opacity: 1;
+    background-color: var(--color-primary-900);
+    }
+    .navbar.transitioning {
+    opacity: 0.3;   
+    background-color: transparent;  
     }
 </style>
