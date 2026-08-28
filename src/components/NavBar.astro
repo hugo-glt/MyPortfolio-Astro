@@ -2,14 +2,52 @@
 import settingsIcon from '../assets/assets_portfolio/settings.svg';
 ---
 
-<nav class="navbar fixed bottom-0 left-0 right-0 h-12 bg-primary-900 ...">
-    <div class="flex items-center justify-center h-full gap-8">
-        <a href="/">PRESENTATION</a>
-        <a href="/projects">PROJECTS</a>
-        <a href="/contacts">CONTACTS</a>
+<nav id="navbar" class="navbar fixed left-0 right-0 h-12 bg-primary-900 transition-all duration-300 ease-out z-100 isolation-isolate bottom-0 top-auto">
+    <div class="flex items-center justify-center h-full gap-12">
+        <a href="#presentation" class="font-bold">PRESENTATION</a>
+        <a href="#projects" class="font-bold">PROJECTS</a>
+        <a href="#contacts" class="font-bold">CONTACTS</a>
     </div>
     <a href="#" class="absolute right-4 top-1/2 -translate-y-1/2">
         <img src={settingsIcon.src} class="w-8 h-8" alt="Settings" />
     </a>
     <div class="progress-bar h-1 bg-primary-500" style="width: 0%"></div>
 </nav>
+
+<script>
+  // IntersectionObserver sur #hero
+    const hero = document.getElementById('hero');
+    const navbar = document.getElementById('navbar');
+    
+    if (hero && navbar) {
+    const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+          // Hero hors écran → navbar en haut
+            navbar.classList.add('scrolled');
+        } else {
+          // Hero visible → navbar en bas
+            navbar.classList.remove('scrolled');
+        }
+
+                navbar.dispatchEvent(new CustomEvent('navbar-position-change', {
+                    detail: { atTop: !entry.isIntersecting }
+                }));
+        });
+    }, { threshold: 0 }); // Déclenche dès qu'1px du hero sort
+    
+    observer.observe(hero);
+    }
+    
+</script>
+
+<style>
+    .navbar {
+        transition: top 0.35s ease, bottom 0.35s ease;
+    }
+
+    .navbar.scrolled {
+        top: 0;
+        bottom: auto;
+    }
+</style>

@@ -19,6 +19,13 @@ import Navbar from '../components/NavBar.astro';
     </body>
 </html>
 
+<script>
+	document.addEventListener('navbar-position-change', (e) => {
+    const event = e as CustomEvent<{ atTop: boolean }>;
+    document.body.classList.toggle('navbar-top', event.detail.atTop);
+});
+</script>
+
 <style>
     html, body {
     	margin: 0;
@@ -26,6 +33,17 @@ import Navbar from '../components/NavBar.astro';
     	min-height: 100vh;
     }
     body {
-    	padding-bottom: 56px; /* espace pour navbar en bas au départ */
+    	padding-bottom: 56px;
     }
+	body {
+    	transition: padding 0.35s ease;
+  	}
+  	body.navbar-top {
+    	padding-top: 56px;
+    	padding-bottom: 0;
+  	}
+  	body:not(.navbar-top) {
+    	padding-bottom: 56px;
+    	padding-top: 0;
+ 	}
 </style>
