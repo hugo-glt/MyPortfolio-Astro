@@ -9,7 +9,6 @@ import ProjectGrid from '../components/ProjectGrid.astro';
 import ProfilePic from '../assets/assets_portfolio/profile-circle.svg';
 import Gitlogo from '../assets/assets_portfolio/GitHub_Lockup_Black_Clearspace.svg';
 import LinkedinLogo from '../assets/assets_portfolio/linkedin.svg';
-import TopPage from '../assets/assets_portfolio/arrow-up.svg';
 import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -106,11 +105,11 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 				</form>
 			</div>
 		</div>
-		<div>
-			<span>
+		<div class="flex flex-col items-center justify-center mt-20">
+			<span class="font-bold">
 				SCROLL TO TOP
 			</span>
-			<img src={TopPage.src} class="w-8 h-8" alt="Scroll to Top" />
+			<img src={Indicator.src} class="w-8 h-8 rotate-180" alt="Scroll to Top" />
 		</div>
 	</section>
 	<NavBar />
