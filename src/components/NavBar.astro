@@ -1,5 +1,7 @@
 ---
 import settingsIcon from '../assets/assets_portfolio/settings.svg';
+import MoonIcon from '../assets/assets_portfolio/moon-icon.svg';
+import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
 ---
 
 <nav id="navbar" class="navbar fixed left-0 right-0 h-12 bg-primary-900 transition-all duration-300 ease-out z-100 isolation-isolate bottom-0 top-auto">
@@ -8,15 +10,46 @@ import settingsIcon from '../assets/assets_portfolio/settings.svg';
         <a href="#projects" class="font-bold">PROJECTS</a>
         <a href="#contacts" class="font-bold">CONTACTS</a>
     </div>
-    <a href="#" class="absolute right-4 top-1/2 -translate-y-1/2">
-        <img src={settingsIcon.src} class="w-8 h-8" alt="Settings" />
-    </a>
-    <div class="progress-bar h-1 bg-primary-500" style="width: 0%"></div>
+    <button 
+        id="settings-btn"
+        class="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-lg hover:bg-white/10 transition"
+        aria-expanded="false"
+        aria-controls="settings-menu"
+        aria-label="Ouvrir le menu paramètres">
+        <img src={settingsIcon.src} class="w-8 h-8" alt="" />
+    </button>
+    <div id="settings-menu" class="settings-menu flex flex-col items-center justify-center p-5 m-10 " role="menu" aria-orientation="vertical">
+        <div class="flex items-center justify-center gap-3">
+            <img src={SunIcon.src} class="w-6 h-6" alt="Toggle Light Mode" />
+            <button id="dark-switch" class="relative h-6 w-11 rounded-full bg-gray-300">
+			    <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white"></span>
+		    </button>
+            <img src={MoonIcon.src} class="w-6 h-6" alt="Toggle Dark Mode" />
+        </div>
+	<div class="mt-4">
+		<label class="mb-2 flex flex-col justify-center items-center font-bold">Language</label>
+		<select class="w-full rounded-lg border px-3 py-2">
+			<option>English</option>
+			<option>Français</option>
+		</select>
+        </div>
+	</div>
+
 </nav>
 
 <script>
     const hero = document.getElementById('hero');
     const navbar = document.getElementById('navbar');
+    const settingsBtn = document.getElementById('settings-btn') as HTMLButtonElement;
+    const settingsMenu = document.getElementById('settings-menu') as HTMLElement;
+
+    if (!settingsBtn || !settingsMenu) {
+        throw new Error('Settings menu elements not found');
+    }
+
+    const menu = settingsMenu;
+
+    let isMenuOpen = false;
     
         if (hero && navbar) {
             const observer = new IntersectionObserver((entries) => {
@@ -42,7 +75,53 @@ import settingsIcon from '../assets/assets_portfolio/settings.svg';
 
             observer.observe(hero);
         }
+     // --- Menu Toggle ---
+    function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    menu.classList.toggle('open', isMenuOpen);
+    settingsBtn.setAttribute('aria-expanded', String(isMenuOpen));
     
+    if (isMenuOpen) {
+      // Focus premier élément
+    menu.querySelector<HTMLElement>('[role="menuitem"]')?.focus();
+    document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('keydown', handleKeydown);
+    } else {
+    document.removeEventListener('click', handleOutsideClick);
+    document.removeEventListener('keydown', handleKeydown);
+    }
+    }
+
+    function closeMenu() {
+    if (isMenuOpen) {
+        isMenuOpen = false;
+        menu.classList.remove('open');
+        settingsBtn.setAttribute('aria-expanded', 'false');
+        document.removeEventListener('click', handleOutsideClick);
+        document.removeEventListener('keydown', handleKeydown);
+    }
+    }
+
+    function handleOutsideClick(e: MouseEvent) {
+    if (!(e.target instanceof Node) || (!settingsBtn.contains(e.target) && !menu.contains(e.target))) {
+        closeMenu();
+    }
+    }
+
+    function handleKeydown(e: KeyboardEvent) {
+    if (e.key === 'Escape') closeMenu();
+    // Navigation clavier dans le menu
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const items = Array.from(menu.querySelectorAll<HTMLElement>('[role="menuitem"]'));
+        const current = document.activeElement;
+        const index = items.indexOf(current as HTMLElement);
+        const next = items[(index + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length];
+        next?.focus();
+    }
+    }
+
+    settingsBtn.addEventListener('click', toggleMenu);
 </script>
 
 <style>
@@ -71,4 +150,53 @@ import settingsIcon from '../assets/assets_portfolio/settings.svg';
     opacity: 0.3;   
     background-color: transparent;  
     }
+
+    .settings-menu {
+    position: absolute;
+    right: 0.5rem;
+    min-width: 180px;
+  padding: 0.5rem;
+  background: var(--color-primary-900);
+  border: 1px solid var(--color-primary-500);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  z-index: 200;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  pointer-events: none;
+}
+
+.settings-menu.open {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* Position selon état navbar */
+.navbar:not(.scrolled) .settings-menu {
+  /* Navbar en BAS → menu AU-DESSUS */
+  bottom: calc(100% + 8px);
+  transform-origin: bottom right;
+}
+
+.navbar.scrolled .settings-menu {
+  /* Navbar en HAUT → menu EN-DESSOUS */
+  top: calc(100% + 8px);
+  transform-origin: top right;
+}
+
+.settings-menu.open {
+  transform: scale(1);
+}
+
+.menu-item {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.875rem;
+  transition: 0.1s;
+}
+.menu-item:hover { background: var(--color-primary-700); }
 </style>
