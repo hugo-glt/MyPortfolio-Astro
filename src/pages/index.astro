@@ -28,17 +28,17 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 		</div>
 	</section>
 
-	<section class="mt-40">
+	<section class="mt-30">
 		<div class="flex w-fit flex-col items-center mx-auto">
 			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PRESENTATION</h3>
 			<div class="mt-5 h-1 w-[80%] bg-black"></div>
 		</div>
-		<div  class="mx-auto mt-20 flex max-w-7xl flex-col items-center gap-10 px-6 md:flex-row md:items-center md:gap-50">
+		<div  class="mx-auto mt-20 flex max-w-7xl flex-col items-center gap-10 px-6 md:flex-row md:items-center md:gap-30	">
 			<div  class="shrink-0">
 				<img src={ResumePlaceholder.src} alt="Resume" class="h-auto w-[clamp(400px,25vw,600px)]"/>
 			</div>
 			<div>
-				<span class="text-2xl">lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				<span class="text-2xl text-center">lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 				</span>
 			</div>
 		</div>
@@ -50,15 +50,17 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 		</div>
 	</section>
 
-	<section>
-		<div>
-			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PROJECTS</h3>
-			<div class="mt-5 h-1 w-[80%] bg-black"></div>
-			<span>
+	<section class="mt-20">
+		<div class="flex flex-col items-center justify-center">
+			<div class="flex flex-col w-fit items-center justify-center">
+				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PROJECTS</h3>
+				<div class="mt-5 h-1 w-[80%] bg-black"></div>
+			</div>
+			<span class="text-center mt-20 m-30 text-2xl">
 				lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 			</span>
 		</div>
-		<section>
+		<section class="mt-5 m-30">
             <ProjectGrid projects={[
   			{ id: 'a', href: '/projects/projet-a', image: Placeholder.src, title: 'Projet A', category: 'Web' },
   			{ id: 'b', href: '/projects/projet-b', image: Placeholder.src, title: 'Projet B', category: 'Mobile' },
@@ -67,20 +69,18 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
   			{ id: 'e', href: '/projects/projet-e', image: Placeholder.src, title: 'Projet E', category: 'Web' },
 		]} />
 		</section>
-		<div> 
-			<span>
-				MORE DETAILS
-			</span>
+		<div class="flex flex-col items-center justify-center mt-5">
+			<span class="font-bold">MORE DETAILS</span>
 			<img src={Indicator.src} alt="Indicator_More_Details" class="w-8 h-8"/>
 		</div>
 	</section>
 
-	<section>
-		<div>
+	<section class="mt-20">
+		<div class="flex flex-col items-center justify-center">
 			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)]">CONTACTS</h3>
 			<div class="mt-5 h-1 w-[80%] bg-black"></div>
 		</div>
-		<div>
+		<div class="flex flex-col items-center justify-center mt-20">
 			<img src={ProfilePic.src} class="w-25 h-25 rounded-full" alt="Profile Picture" />
 			<div>
 				<span>
@@ -92,7 +92,7 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 				</div>
 			</div>
 		</div>
-		<div>
+		<div class="flex flex-col items-center justify-center mt-20">
 			<span>
 				SEND ME A MESSAGE !
 			</span>
