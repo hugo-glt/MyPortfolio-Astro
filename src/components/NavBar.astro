@@ -18,11 +18,11 @@ import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
         aria-label="Ouvrir le menu paramètres">
         <img src={settingsIcon.src} class="w-8 h-8" alt="" />
     </button>
-    <div id="settings-menu" class="settings-menu flex flex-col items-center justify-center p-5 m-10 " role="menu" aria-orientation="vertical">
+    <div id="settings-menu" class="settings-menu flex flex-col items-center justify-center p-3 m-3 " role="menu" aria-orientation="vertical">
         <div class="flex items-center justify-center gap-3">
             <img src={SunIcon.src} class="w-6 h-6" alt="Toggle Light Mode" />
-            <button id="dark-switch" class="relative h-6 w-11 rounded-full bg-gray-300">
-			    <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white"></span>
+            <button id="dark-switch" class="dark-switch relative h-6 w-11 rounded-full bg-gray-300" role="switch" aria-checked="false" aria-label="Toggle Dark Mode">
+			    <span class="switch-knob absolute left-1 top-1 h-4 w-4 rounded-full bg-white"></span>
 		    </button>
             <img src={MoonIcon.src} class="w-6 h-6" alt="Toggle Dark Mode" />
         </div>
@@ -42,13 +42,13 @@ import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
     const navbar = document.getElementById('navbar');
     const settingsBtn = document.getElementById('settings-btn') as HTMLButtonElement;
     const settingsMenu = document.getElementById('settings-menu') as HTMLElement;
+    const darkSwitch = document.getElementById('dark-switch') as HTMLButtonElement;
 
     if (!settingsBtn || !settingsMenu) {
         throw new Error('Settings menu elements not found');
     }
 
     const menu = settingsMenu;
-
     let isMenuOpen = false;
     
         if (hero && navbar) {
@@ -121,7 +121,59 @@ import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
     }
     }
 
+    // --- Dark Mode Toggle ---
     settingsBtn.addEventListener('click', toggleMenu);
+    const THEME_KEY = 'theme'; // 'light' | 'dark'
+
+    function getStoredTheme(): 'light' | 'dark' {
+        const stored = localStorage.getItem(THEME_KEY);
+        if (stored === 'light' || stored === 'dark') return stored;
+        // Pas de préférence enregistrée → on regarde la préférence système
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme: 'light' | 'dark') {
+        // Tailwind (darkMode: 'class') : la classe 'dark' sur <html> pilote tout le CSS
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        darkSwitch?.classList.toggle('active', theme === 'dark');
+        darkSwitch?.setAttribute('aria-checked', String(theme === 'dark'));
+        localStorage.setItem(THEME_KEY, theme);
+
+        // Événement personnalisé : d'autres scripts peuvent écouter le changement
+        // (ex: recolorer un canvas, changer une image, etc.)
+        window.dispatchEvent(new CustomEvent('theme-change', {
+            detail: { theme }
+        }));
+    }
+
+    function toggleTheme() {
+        const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    // Initialisation au chargement (avant même l'interaction utilisateur)
+    applyTheme(getStoredTheme());
+
+    darkSwitch?.addEventListener('click', toggleTheme);
+
+    // --- Exemple d'écouteur externe prêt à l'emploi ---
+    // À placer dans n'importe quel autre script qui doit réagir au changement de thème
+    window.addEventListener('theme-change', (e: Event) => {
+        const { theme } = (e as CustomEvent).detail;
+        // Exemple : ici tu pourras plus tard déclencher
+        // ta transition de couleurs jour/nuit (ex: overlay, gradient, etc.)
+        console.log('Thème changé →', theme);
+    });
+</script>
+
+<script is:inline>
+    (function() {
+        const stored = localStorage.getItem('theme');
+        const theme = stored === 'dark' || stored === 'light' 
+        ? stored 
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+    })();
 </script>
 
 <style>
@@ -155,48 +207,70 @@ import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
     position: absolute;
     right: 0.5rem;
     min-width: 180px;
-  padding: 0.5rem;
-  background: var(--color-primary-900);
-  border: 1px solid var(--color-primary-500);
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  z-index: 200;
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.15s ease, transform 0.15s ease;
-  pointer-events: none;
+    padding: 0.5rem;
+    background: var(--color-primary-900);
+    border: 1px solid var(--color-primary-500);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 200;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    pointer-events: none;
 }
 
 .settings-menu.open {
-  opacity: 1;
-  transform: scale(1);
-  pointer-events: auto;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
 }
 
 /* Position selon état navbar */
 .navbar:not(.scrolled) .settings-menu {
   /* Navbar en BAS → menu AU-DESSUS */
-  bottom: calc(100% + 8px);
-  transform-origin: bottom right;
+    bottom: calc(100% + 8px);
+    transform-origin: bottom right;
 }
 
 .navbar.scrolled .settings-menu {
   /* Navbar en HAUT → menu EN-DESSOUS */
-  top: calc(100% + 8px);
-  transform-origin: top right;
+    top: calc(100% + 8px);
+    transform-origin: top right;
 }
 
 .settings-menu.open {
-  transform: scale(1);
+    transform: scale(1);
 }
 
 .menu-item {
-  display: block;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  color: white;
-  font-size: 0.875rem;
-  transition: 0.1s;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    color: white;
+    font-size: 0.875rem;
+    transition: 0.1s;
 }
 .menu-item:hover { background: var(--color-primary-700); }
+    .dark-switch {
+    transition: background-color 0.25s ease;
+    cursor: pointer;
+    border: none;
+    outline-offset: 2px;
+}
+
+.switch-knob {
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* État actif (dark mode ON) */
+.dark-switch.active {
+    background-color: var(--color-primary-500, #3b82f6);
+}
+
+.dark-switch.active .switch-knob {
+    transform: translateX(20px); /* 44px (w-11) - 16px (w-4) - 2*4px (left-1) = 20px */
+}
+
+/* Hover effect test */
+
 </style>

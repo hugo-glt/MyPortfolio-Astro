@@ -15,6 +15,7 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 ---
 
 <Layout>
+<head>
 	<section id="hero">
 		<div class="relative">
 			<img src={Placeholder.src} alt="Profile Picture" class="relative w-full"/>
@@ -26,7 +27,7 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 		</div>
 	</section>
 
-	<section id="presentation" class="mt-30">
+	<section id="presentation" class="mt-30 scroll-mt-15">
 		<div class="flex w-fit flex-col items-center mx-auto">
 			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PRESENTATION</h3>
 			<div class="mt-5 h-1 w-[80%] bg-black"></div>
@@ -49,15 +50,16 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 				</span>
 			</div>
 		</div>
-		<a href="#contacts" class="flex flex-col items-center justify-center mt-20">
-			<span class="font-bold">
+		<a href="#contacts" class="flex flex-col items-center justify-center mt-18">
+			<span class="font-bold text-sm">
 				MORE DETAILS
 			</span>
-			<img src={Indicator.src} alt="Indicator_More_Details" class="w-8 h-8"/>
+			<img src={Indicator.src} alt="Indicator_More_Details" class="w-5 h-5"/>
 		</a>
 	</section>
-
-	<section id="projects" class="mt-20">
+</head>
+<body>
+	<section id="projects" class="mt-20 scroll-mt-15">
 		<div class="flex flex-col items-center justify-center">
 			<div class="flex flex-col w-fit items-center justify-center">
 				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PROJECTS</h3>
@@ -77,12 +79,13 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 		]} />
 		</section>
 		<a href="#contacts" class="flex flex-col items-center justify-center mt-5">
-			<span class="font-bold">MORE DETAILS</span>
-			<img src={Indicator.src} alt="Indicator_More_Details" class="w-8 h-8"/>
+			<span class="font-bold text-sm">MORE DETAILS</span>
+			<img src={Indicator.src} alt="Indicator_More_Details" class="w-5 h-5"/>
 		</a>
 	</section>
-
-	<section id="contacts" class="mt-20">
+</body>
+<footer>
+	<section id="contacts" class="mt-20 scroll-mt-15">
 		<div class="flex flex-col items-center justify-center">
 			<div class="flex flex-col w-fit items-center justify-center">
 				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">CONTACTS</h3>
@@ -117,11 +120,12 @@ import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 				</form>
 			</div>
 		</div>
-		<a href="#hero" class="flex flex-col items-center justify-center mt-20">
-			<span class="font-bold">
+		<a href="#hero" class="flex flex-col items-center justify-center mt-3">
+			<span class="font-bold text-sm">
 				SCROLL TO TOP
 			</span>
-			<img src={Indicator.src} class="w-8 h-8 rotate-180" alt="Scroll to Top" />
+			<img src={Indicator.src} class="w-5 h-5 rotate-180" alt="Scroll to Top" />
 		</a>
 	</section>
+</footer>	
 </Layout>
