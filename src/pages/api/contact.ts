@@ -20,7 +20,7 @@ const contactSchema = z.object({
     name: z.string().trim().min(1, 'Nom requis').max(100),
     email: z.string().trim().email('Email invalide').max(254),
     message: z.string().trim().min(1, 'Message requis').max(5000),
-    website: z.string().max(0).optional(), // honeypot
+    website: z.string().optional(), // honeypot
 });
 
 // --- Rate limiting simple en mémoire (par IP) ---
@@ -105,9 +105,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     });
 
     } catch (error) {
-        console.error('Erreur envoi contact:', error);
+    console.error('Erreur envoi contact:', error); 
     return new Response(
-        JSON.stringify({ error: 'Une erreur est survenue.' }),
+        JSON.stringify({ error: 'Erreur serveur' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
     }
