@@ -1,0 +1,71 @@
+---
+import type { ImageMetadata } from 'astro';
+import Placeholder from '../assets/assets_images/placeholder-1.png';
+
+interface Project {
+    id: 'a' | 'b' | 'c' | 'd' | 'e';
+    href: string;
+    image: ImageMetadata;
+    title: string;
+    category: string;
+}
+const { projects } = Astro.props;
+---
+
+<div class="project-grid">
+    {projects.map((p: Project) => (
+        <a href={p.href} class={`project-card project-${p.id} relative block overflow-hidden rounded-lg`}>
+            <img src={Placeholder.src} alt="Project" class="w-full h-full object-cover" />
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-linear-to-t from-black/70 to-transparent text-white">
+                <h3 class="font-heading text-sm font-semibold">{p.title}</h3>
+                <p class="font-body text-xs opacity-90">{p.category}</p>
+            </div>
+        </a>
+    ))}
+</div>
+
+<style>
+    .project-grid {
+    display: grid;
+    margin: 7px;
+
+    grid-template-columns: 60% 40%;
+    grid-template-rows: repeat(4, 1fr);
+
+    grid-template-areas:
+        "a b"
+        "a c"
+        "d c"
+        "d e";
+
+    gap: 6px;
+
+    background: var(--color-primary-900);
+    padding: 15px;
+    border-radius: 15px;
+
+    min-height: 400px;
+    }
+
+    .project-a { grid-area: a; }
+    .project-b { grid-area: b; }
+    .project-c { grid-area: c; }
+    .project-d { grid-area: d; }
+    .project-e { grid-area: e; }
+
+    /* Responsive adjustments for smaller screens */
+    @media (min-width: 768px) {
+        .project-grid {
+            min-height: 600px;
+
+            grid-template-columns: 60% 40%;
+            grid-template-rows: repeat(4, 1fr);
+
+            grid-template-areas:
+                "a b"
+                "a c"
+                "d c"
+                "d e";
+        }
+
+</style>
