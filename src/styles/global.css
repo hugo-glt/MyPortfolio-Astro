@@ -12,3 +12,5 @@
     --color-secondary-500: #F39E60;
     --color-secondary-300: #F9F5F0;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
