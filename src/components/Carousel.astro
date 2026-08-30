@@ -1,0 +1,284 @@
+---
+// src/components/Carousel.astro
+//
+// Carousel sans défilement automatique : navigation uniquement par flèches.
+// Chaque slide affiche du texte à gauche et une image à droite (empilés en mobile).
+// Un compteur "01 / 04" est affiché en haut à gauche du carousel.
+
+
+export interface CarouselSlide {
+    title: string;
+    text: string;
+    imageSrc: string;
+    imageAlt?: string;
+}
+
+interface Props {
+    slides: CarouselSlide[];
+    /** Chemin des icônes de flèche (temporaires, à remplacer). */
+    arrowLeftSrc?: string;
+    arrowRightSrc?: string;
+}
+
+const {
+    slides,
+    arrowLeftSrc = 'https://placehold.co/32x32/png?text=%3C',
+    arrowRightSrc = 'https://placehold.co/32x32/png?text=%3E',
+} = Astro.props;
+---
+
+<section class="carousel" data-carousel aria-roledescription="carousel">
+    <!-- Compteur de page -->
+    <div class="carousel-counter" aria-live="polite">
+    <span data-current>01</span>
+    <span class="carousel-counter-sep">/</span>
+    <span data-total>{String(slides.length).padStart(2, '0')}</span>
+    </div>
+
+    <div class="carousel-body">
+    <!-- Flèche précédente -->
+    <button
+        type="button"
+        class="carousel-arrow carousel-arrow-left"
+        data-prev
+        aria-label="Slide précédente">
+        <img src={arrowLeftSrc} alt="" class="carousel-arrow-icon" />
+    </button>
+
+    <!-- Fenêtre visible -->
+    <div class="carousel-viewport">
+        <div class="carousel-track" data-track>
+        {slides.map((slide, i) => (
+            <article
+                class="carousel-slide"
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${i + 1} sur ${slides.length}`}
+                aria-hidden={i === 0 ? 'false' : 'true'}>
+            <div class="carousel-text">
+                <h3 class="carousel-title">{slide.title}</h3>
+                <p class="carousel-paragraph">{slide.text}</p>
+            </div>
+            <div class="carousel-image">
+                <img src={slide.imageSrc} alt={slide.imageAlt ?? ''} loading="lazy" />
+            </div>
+            </article>
+        ))}
+        </div>
+    </div>
+
+    <!-- Flèche suivante -->
+    <button
+        type="button"
+        class="carousel-arrow carousel-arrow-right"
+        data-next
+        aria-label="Slide suivante">
+        <img src={arrowRightSrc} alt="" class="carousel-arrow-icon" />
+    </button>
+    </div>
+</section>
+
+<script>
+    const carousels = document.querySelectorAll<HTMLElement>('[data-carousel]');
+
+    carousels.forEach((carousel) => {
+    const track = carousel.querySelector<HTMLElement>('[data-track]');
+    const slides = carousel.querySelectorAll<HTMLElement>('.carousel-slide');
+    const prevBtn = carousel.querySelector<HTMLButtonElement>('[data-prev]');
+    const nextBtn = carousel.querySelector<HTMLButtonElement>('[data-next]');
+    const currentEl = carousel.querySelector('[data-current]');
+    const total = slides.length;
+    let index = 0;
+
+    function update() {
+        if (!track) return;
+
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        if (currentEl) {
+        currentEl.textContent = String(index + 1).padStart(2, '0');
+        }
+
+        slides.forEach((slide, i) => {
+        slide.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+        });
+
+        if (prevBtn) prevBtn.disabled = index === 0;
+        if (nextBtn) nextBtn.disabled = index === total - 1;
+    }
+
+    prevBtn?.addEventListener('click', () => {
+        if (index > 0) {
+        index -= 1;
+        update();
+        }
+    });
+
+    nextBtn?.addEventListener('click', () => {
+        if (index < total - 1) {
+        index += 1;
+        update();
+        }
+    });
+
+    // Navigation clavier (flèches gauche/droite) quand le carousel a le focus
+    carousel.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'ArrowLeft') prevBtn?.click();
+        if (e.key === 'ArrowRight') nextBtn?.click();
+    });
+
+    update();
+    });
+</script>
+
+<style>
+    .carousel {
+    position: relative;
+    width: 100%;
+    }
+
+    /* --- Compteur de page --- */
+    .carousel-counter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: white;
+    background-color: var(--color-primary-900);
+    border-radius: 0 0 0.5rem 0;
+    }
+
+    .carousel-counter-sep {
+    opacity: 0.5;
+    }
+
+    /* --- Structure principale --- */
+    .carousel-body {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 2.5rem; /* laisse la place au compteur */
+    }
+
+    .carousel-viewport {
+    flex: 1;
+    overflow: hidden;
+    }
+
+    .carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    }
+
+    @media (min-width: 768px) {
+    .carousel-slide {
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+        padding: 1.5rem 2rem;
+    }
+    }
+
+    /* --- Bloc texte (gauche) --- */
+    .carousel-text {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    }
+
+    .carousel-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-primary-900);
+    }
+
+    .carousel-paragraph {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-primary-700, #444);
+    }
+
+    /* --- Bloc image (droite) --- */
+    .carousel-image {
+    flex: 1 1 55%;
+    width: 100%;
+    }
+
+    .carousel-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    /* --- Flèches --- */
+    .carousel-arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 9999px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;
+    }
+
+    .carousel-arrow:hover:not(:disabled) {
+    background-color: color-mix(in srgb, var(--color-primary-900) 8%, transparent);
+    transform: scale(1.05);
+    }
+
+    .carousel-arrow:active:not(:disabled) {
+    transform: scale(0.95);
+    }
+
+    .carousel-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    }
+
+    .carousel-arrow:focus-visible {
+    outline: 2px solid var(--color-primary-500, #3b82f6);
+    outline-offset: 2px;
+    }
+
+    .carousel-arrow-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    pointer-events: none;
+    }
+
+    /* --- Accessibilité : réduction des animations --- */
+    @media (prefers-reduced-motion: reduce) {
+    .carousel-track {
+        transition: none;
+    }
+    .carousel-arrow {
+        transition: none;
+    }
+    }
+</style>
