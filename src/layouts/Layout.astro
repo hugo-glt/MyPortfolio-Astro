@@ -1,6 +1,22 @@
 ---
 import '../styles/global.css'  
 import Navbar from '../components/NavBar.astro';
+import Footer from "../components/Footer.astro";
+
+type NavLink = {
+	label: string;
+	href: string;
+	external?: boolean;
+};
+
+interface Props {
+	navLinks?: NavLink[];
+	navbarPinned?: boolean;
+}
+
+const { navbarPinned = false } = Astro.props;
+
+const { navLinks } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,10 +29,15 @@ import Navbar from '../components/NavBar.astro';
     	<title>Portfolio</title>
     	<!-- À ajouter plus tard : meta description, OG -->
     </head>
-    <body>
-    	<Navbar />
-    	<slot />
-    </body>
+    <body class="min-h-screen flex flex-col">
+    	<Navbar pinned={navbarPinned} links={navLinks} />
+		<main>
+    		<slot />
+		</main>
+		<footer class="border-t bg-primary-900 dark:bg-secondary-500 w-full dark:text-white transition-colors duration-300 	mt-30">
+			<Footer />
+		</footer>
+	</body>
 </html>
 
 <script>
@@ -32,18 +53,7 @@ import Navbar from '../components/NavBar.astro';
     	width: 100%;
     	min-height: 100vh;
     }
-    body {
-    	padding-bottom: 56px;
-    }
 	body {
     	transition: padding 0.35s ease;
-  	}
-  	body.navbar-top {
-    	padding-top: 56px;
-    	padding-bottom: 0;
-  	}
-  	body:not(.navbar-top) {
-    	padding-bottom: 56px;
-    	padding-top: 0;
- 	}
+	}
 </style>

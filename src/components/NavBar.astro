@@ -2,20 +2,60 @@
 import settingsIcon from '../assets/assets_portfolio/settings.svg';
 import MoonIcon from '../assets/assets_portfolio/moon-icon.svg';
 import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
+import LeftArrow from '../assets/assets_portfolio/arrow-left.svg';
+
+export interface NavLink {
+    label: string;
+    href: string;
+}
+
+interface Props {
+    links?: NavLink[];
+    backArrowSrc?: string;
+    pinned?: boolean;
+}
+
+const DEFAULT_LINKS: NavLink[] = [
+    { label: 'PRESENTATION', href: '#presentation' },
+    { label: 'PROJECTS', href: '#projects' },
+    { label: 'CONTACTS', href: '#contacts' },
+];
+
+const {
+    links = DEFAULT_LINKS,
+    backArrowSrc = LeftArrow.src,
+    pinned = false,
+} = Astro.props;
+
+const isHome = Astro.url.pathname === '/';
 ---
 
-<nav id="navbar" class="navbar fixed left-0 right-0 h-12 bg-primary-900 transition-all duration-300 ease-out z-100 isolation-isolate bottom-0 top-auto">
+<nav id="navbar" class:list={[
+        'navbar fixed left-0 right-0 h-12 bg-primary-900 transition-all duration-300 ease-out z-100 isolation-isolate',
+        pinned ? 'pinned' : 'bottom-0 top-auto',
+    ]}
+    data-pinned={pinned}>
+    {!isHome && (
+        <a
+            href="/#projects"
+            class="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-lg hover:bg-white/10 transition"
+            aria-label="Back to Home">
+            <img src={backArrowSrc} class="w-6 h-6" alt="Back Arrow" />
+        </a>
+    )}
     <div class="flex items-center justify-center h-full gap-12">
-        <a href="#presentation" class="font-bold">PRESENTATION</a>
-        <a href="#projects" class="font-bold">PROJECTS</a>
-        <a href="#contacts" class="font-bold">CONTACTS</a>
+        {links.map((link) => (
+            <a href={link.href} class="font-bold">
+                {link.label}
+            </a>
+        ))}
     </div>
     <button 
         id="settings-btn"
         class="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-lg hover:bg-white/10 transition"
         aria-expanded="false"
         aria-controls="settings-menu"
-        aria-label="Ouvrir le menu paramètres">
+        aria-label="Open Settings Menu">
         <img src={settingsIcon.src} class="w-8 h-8" alt="" />
     </button>
     <div id="settings-menu" class="settings-menu flex flex-col items-center justify-center p-3 m-3 " role="menu" aria-orientation="vertical">
@@ -43,6 +83,7 @@ import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
     const settingsBtn = document.getElementById('settings-btn') as HTMLButtonElement;
     const settingsMenu = document.getElementById('settings-menu') as HTMLElement;
     const darkSwitch = document.getElementById('dark-switch') as HTMLButtonElement;
+    const isPinned = navbar?.dataset.pinned === 'true';
 
     if (!settingsBtn || !settingsMenu) {
         throw new Error('Settings menu elements not found');
@@ -164,7 +205,30 @@ import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
         // ta transition de couleurs jour/nuit (ex: overlay, gradient, etc.)
         console.log('Thème changé →', theme);
     });
-    // --- Temporary day/night test ---
+    if (hero && navbar && !isPinned) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            navbar.classList.add('transitioning');
+            navbar.offsetHeight;
+
+            if (!entry.isIntersecting) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            navbar.dispatchEvent(new CustomEvent('navbar-position-change', {
+                detail: { atTop: !entry.isIntersecting }
+            }));
+
+            setTimeout(() => {
+                navbar.classList.remove('transitioning');
+            }, 450);
+        });
+    }, { threshold: 0 });
+
+    observer.observe(hero);
+}
     
 </script>
 
@@ -273,6 +337,17 @@ import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
     transform: translateX(20px); /* 44px (w-11) - 16px (w-4) - 2*4px (left-1) = 20px */
 }
 
-/* day/night effect test */
+.navbar.pinned {
+    top: 0;
+    bottom: auto;
+    opacity: 1;
+    background-color: var(--color-primary-900);
+}
+
+.navbar.pinned .settings-menu {
+    top: calc(100% + 8px);
+    bottom: auto;
+    transform-origin: top right;
+}
 
 </style>
