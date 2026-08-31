@@ -1,0 +1,153 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const icons = [
+  {
+    name: "Sun",
+    url: "https://www.svgrepo.com/svg/532889/sun",
+  },
+  {
+    name: "Moon",
+    url: "https://www.svgrepo.com/svg/532875/moon",
+  },
+  {
+    name: "Gear",
+    url: "https://www.svgrepo.com/svg/488369/settings",
+  },
+  {
+    name: "Indicator",
+    url: "https://www.svgrepo.com/svg/384750/circle-arrow-indicator-down",
+  },
+  {
+    name: "Arrow",
+    url: "https://www.svgrepo.com/svg/535155/arrow-left",
+  },
+  {
+    name: "Profile",
+    url: "https://www.svgrepo.com/svg/491109/profile-circle",
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.svgrepo.com/svg/157006/linkedin",
+  },
+  {
+    name: "GitHub",
+    url: "https://www.svgrepo.com/svg/378420/github-fill",
+  },
+];
+---
+
+<Layout>
+  <main class="mx-auto max-w-3xl px-6 py-24">
+    <h1 class="text-3xl font-bold mb-2">Crédits et Licences</h1>
+    <p class="text-sm text-gray-500 mb-10">
+      Dernière mise à jour : 31/08/2026 21:30 (UTC+2)
+    </p>
+
+    <section class="mb-10">
+      <p class="leading-relaxed">
+        Cette page recense les ressources et contenus utilisés sur ce site qui
+        ne sont pas des créations originales de l'éditeur. Les contenus
+        mentionnés ci-dessous restent soumis à leurs conditions de licence
+        respectives. Leur présence sur ce site ne constitue pas un transfert de
+        propriété intellectuelle.
+      </p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3">Icônes</h2>
+      <p class="leading-relaxed">
+        Certaines icônes utilisées sur ce site proviennent de:
+        <a
+          href="https://www.svgrepo.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-neutral-950 underline text_bold decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-950 dark:text-white dark:decoration-neutral-600 dark:hover:decoration-white"
+          >SVG Repo
+        </a>
+      </p>
+      <p class="mt-2 leading-relaxed">
+        Les huit icônes listées ci-dessous sont indiquées comme étant
+        distribuées sous licence CC0 sur leurs pages respectives. La licence CC0
+        permet l'utilisation, la modification et la redistribution de l'œuvre
+        sans obligation générale d'attribution, dans les limites prévues par le
+        droit applicable.
+      </p>
+      <div class="p-6 mt-5">
+        <table class="w-full border-collapse text-sm text-left">
+          <thead>
+            <tr class="border-b border-gray-300">
+              <th class="py-2 px-4">Icône</th>
+              <th class="py-2 px-4">Source</th>
+              <th class="py-2 px-4">Licence</th>
+              <th class="py-2 px-4">Lien</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              icons.map((icon) => (
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="py-2 px-4 font-medium">{icon.name}</td>
+                  <td class="py-2 px-4">SVG Repo</td>
+                  <td class="py-2 px-4">CC0</td>
+                  <td class="py-2 px-4">
+                    <a
+                      href={icon.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-blue-600 hover:underline"
+                    >
+                      Voir l'icône
+                    </a>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3">Source</h2>
+      <a
+        href="https://www.svgrepo.com/page/licensing?"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-medium text-neutral-950 underline text_bold decoration-neutral-400 underline-offset-4 transition-colors hover:decoration-neutral-950 dark:text-white dark:decoration-neutral-600 dark:hover:decoration-white"
+      >
+        SVG Repo — Licensing
+      </a>
+      <p class="leading-relaxed mt-2">
+        Les informations de licence indiquées ci-dessus correspondent aux
+        informations affichées sur les pages des icônes au moment de la
+        rédaction de cette page.
+      </p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3">Autres ressources</h2>
+      <p class="leading-relaxed">
+        D'autres ressources appartenant à des tiers peuvent être utilisées sur
+        ce site. Lorsqu'une licence ou une autorisation particulière l'exige,
+        les informations relatives à leur auteur, leur source et leurs
+        conditions d'utilisation sont indiquées dans cette section ou à
+        proximité du contenu concerné.
+      </p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-3">Contenus originaux</h2>
+      <p class="leading-relaxed">
+        Les textes, images, illustrations, éléments graphiques et codes
+        originaux créés spécifiquement pour ce site restent, sauf mention
+        contraire, la propriété de l'éditeur.
+      </p>
+      <p class="leading-relaxed mt-2">
+        Leur reproduction, représentation, modification ou exploitation, totale
+        ou partielle, sans autorisation préalable est interdite, sous réserve
+        des exceptions prévues par la loi.
+      </p>
+    </section>
+  </main>
+</Layout>
