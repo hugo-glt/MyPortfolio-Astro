@@ -5,6 +5,12 @@ import Style from '../styles/global.css';
 import Indicator from '../assets/assets_portfolio/indicator-down.svg';
 import Carousel from '../components/Carousel.astro';
 
+const projectNavLinks = [
+  	{ label: 'PRESENTATION', href: '#project-a-presentation' },
+  	{ label: 'DOCUMENTATION', href: '#carousel-project-a' },
+  	{ label: 'CONTACTS', href: '/#contacts' },
+];
+
 const projectSlides = [
   {
     title: 'Nom du projet 1',
@@ -27,7 +33,7 @@ const projectSlides = [
 ];
 ---
 
-<Layout>
+<Layout navLinks={projectNavLinks}>
     <section id="hero">
         <div class="relative">
 			<img src={Placeholder.src} alt="Project A Picture" class="relative w-full"/>
@@ -37,7 +43,7 @@ const projectSlides = [
 			</div>
 		</div>
     </section>
-    <section id="presentation" class="mt-30 scroll-mt-15">
+    <section id="project-a-presentation" class="mt-30 scroll-mt-15">
 		<div class="flex w-fit flex-col items-center mx-auto">
 			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PRESENTATION</h3>
 			<div class="mt-5 h-1 w-[80%] bg-black"></div>
@@ -53,7 +59,7 @@ const projectSlides = [
 			<img src={Indicator.src} alt="Indicator_More_Details" class="w-5 h-5"/>
 		</a>
     </section>
-	<section id="carousel" class="mt-30 scroll-mt-15">
+	<section id="carousel-project-a" class="mt-30 scroll-mt-15">
 		<div class="flex w-fit flex-col items-center mx-auto">
 			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">DOCUMENTATION</h3>
 			<div class="mt-5 h-1 w-[80%] bg-black"></div>

@@ -1,6 +1,18 @@
 ---
 import '../styles/global.css'  
 import Navbar from '../components/NavBar.astro';
+
+type NavLink = {
+	label: string;
+	href: string;
+	external?: boolean;
+};
+
+interface Props {
+	navLinks?: NavLink[];
+}
+
+const { navLinks } = Astro.props;
 ---
 
 <!doctype html>
@@ -14,7 +26,7 @@ import Navbar from '../components/NavBar.astro';
     	<!-- À ajouter plus tard : meta description, OG -->
     </head>
     <body>
-    	<Navbar />
+    	<Navbar links={navLinks} />
     	<slot />
     </body>
 </html>

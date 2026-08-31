@@ -2,20 +2,39 @@
 import settingsIcon from '../assets/assets_portfolio/settings.svg';
 import MoonIcon from '../assets/assets_portfolio/moon-icon.svg';
 import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
+
+export interface NavLink {
+    label: string;
+    href: string;
+}
+
+interface Props {
+    links?: NavLink[];
+}
+
+const DEFAULT_LINKS: NavLink[] = [
+    { label: 'PRESENTATION', href: '#presentation' },
+    { label: 'PROJECTS', href: '#projects' },
+    { label: 'CONTACTS', href: '#contacts' },
+];
+
+const { links = DEFAULT_LINKS } = Astro.props;
 ---
 
 <nav id="navbar" class="navbar fixed left-0 right-0 h-12 bg-primary-900 transition-all duration-300 ease-out z-100 isolation-isolate bottom-0 top-auto">
     <div class="flex items-center justify-center h-full gap-12">
-        <a href="#presentation" class="font-bold">PRESENTATION</a>
-        <a href="#projects" class="font-bold">PROJECTS</a>
-        <a href="#contacts" class="font-bold">CONTACTS</a>
+        {links.map((link) => (
+            <a href={link.href} class="font-bold">
+                {link.label}
+            </a>
+        ))}
     </div>
     <button 
         id="settings-btn"
         class="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-lg hover:bg-white/10 transition"
         aria-expanded="false"
         aria-controls="settings-menu"
-        aria-label="Ouvrir le menu paramètres">
+        aria-label="Open Settings Menu">
         <img src={settingsIcon.src} class="w-8 h-8" alt="" />
     </button>
     <div id="settings-menu" class="settings-menu flex flex-col items-center justify-center p-3 m-3 " role="menu" aria-orientation="vertical">
