@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const NavLinks = [
+  	{ label: 'PRESENTATION', href: '/#presentation' },
+  	{ label: 'PROJECTS', href: '/#projects' },
+  	{ label: 'CONTACTS', href: '/#contacts' },
+];
 ---
 
-<Layout>
+<Layout navbarPinned navLinks={NavLinks}>
     <main class="mx-auto max-w-3xl px-6 py-24">
     <h1 class="text-3xl font-bold mb-2">Mentions légales</h1>
     <p class="text-sm text-gray-500 mb-10">Dernière mise à jour : 31/08/2026 20:40  (UTC+2)</p>

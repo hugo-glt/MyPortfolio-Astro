@@ -35,9 +35,15 @@ const icons = [
     url: "https://www.svgrepo.com/svg/378420/github-fill",
   },
 ];
+
+const NavLinks = [
+  	{ label: 'PRESENTATION', href: '/#presentation' },
+  	{ label: 'PROJECTS', href: '/#projects' },
+  	{ label: 'CONTACTS', href: '/#contacts' },
+];
 ---
 
-<Layout>
+<Layout navbarPinned navLinks={NavLinks}>
   <main class="mx-auto max-w-3xl px-6 py-24">
     <h1 class="text-3xl font-bold mb-2">Crédits et Licences</h1>
     <p class="text-sm text-gray-500 mb-10">

@@ -11,7 +11,10 @@ type NavLink = {
 
 interface Props {
 	navLinks?: NavLink[];
+	navbarPinned?: boolean;
 }
+
+const { navbarPinned = false } = Astro.props;
 
 const { navLinks } = Astro.props;
 ---
@@ -27,7 +30,7 @@ const { navLinks } = Astro.props;
     	<!-- À ajouter plus tard : meta description, OG -->
     </head>
     <body class="min-h-screen flex flex-col">
-    	<Navbar links={navLinks} />
+    	<Navbar pinned={navbarPinned} links={navLinks} />
 		<main>
     		<slot />
 		</main>

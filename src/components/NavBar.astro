@@ -12,6 +12,7 @@ export interface NavLink {
 interface Props {
     links?: NavLink[];
     backArrowSrc?: string;
+    pinned?: boolean;
 }
 
 const DEFAULT_LINKS: NavLink[] = [
@@ -23,12 +24,17 @@ const DEFAULT_LINKS: NavLink[] = [
 const {
     links = DEFAULT_LINKS,
     backArrowSrc = LeftArrow.src,
+    pinned = false,
 } = Astro.props;
 
 const isHome = Astro.url.pathname === '/';
 ---
 
-<nav id="navbar" class="navbar fixed left-0 right-0 h-12 bg-primary-900 transition-all duration-300 ease-out z-100 isolation-isolate bottom-0 top-auto">
+<nav id="navbar" class:list={[
+        'navbar fixed left-0 right-0 h-12 bg-primary-900 transition-all duration-300 ease-out z-100 isolation-isolate',
+        pinned ? 'pinned' : 'bottom-0 top-auto',
+    ]}
+    data-pinned={pinned}>
     {!isHome && (
         <a
             href="/#projects"
@@ -77,6 +83,7 @@ const isHome = Astro.url.pathname === '/';
     const settingsBtn = document.getElementById('settings-btn') as HTMLButtonElement;
     const settingsMenu = document.getElementById('settings-menu') as HTMLElement;
     const darkSwitch = document.getElementById('dark-switch') as HTMLButtonElement;
+    const isPinned = navbar?.dataset.pinned === 'true';
 
     if (!settingsBtn || !settingsMenu) {
         throw new Error('Settings menu elements not found');
@@ -198,7 +205,30 @@ const isHome = Astro.url.pathname === '/';
         // ta transition de couleurs jour/nuit (ex: overlay, gradient, etc.)
         console.log('Thème changé →', theme);
     });
-    // --- Temporary day/night test ---
+    if (hero && navbar && !isPinned) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            navbar.classList.add('transitioning');
+            navbar.offsetHeight;
+
+            if (!entry.isIntersecting) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            navbar.dispatchEvent(new CustomEvent('navbar-position-change', {
+                detail: { atTop: !entry.isIntersecting }
+            }));
+
+            setTimeout(() => {
+                navbar.classList.remove('transitioning');
+            }, 450);
+        });
+    }, { threshold: 0 });
+
+    observer.observe(hero);
+}
     
 </script>
 
@@ -307,6 +337,17 @@ const isHome = Astro.url.pathname === '/';
     transform: translateX(20px); /* 44px (w-11) - 16px (w-4) - 2*4px (left-1) = 20px */
 }
 
-/* day/night effect test */
+.navbar.pinned {
+    top: 0;
+    bottom: auto;
+    opacity: 1;
+    background-color: var(--color-primary-900);
+}
+
+.navbar.pinned .settings-menu {
+    top: calc(100% + 8px);
+    bottom: auto;
+    transform-origin: top right;
+}
 
 </style>
