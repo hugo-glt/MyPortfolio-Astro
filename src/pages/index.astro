@@ -18,14 +18,14 @@ import Footer from '../components/Footer.astro';
 			<div class="absolute left-[3%] top-1/2 -translate-y-1/2 font-bold">
             <h1 class="text-[clamp(2.5rem,8vw,12rem)] leading-none">HUGO</h1>
             <h1 class="text-[clamp(2.5rem,8vw,12em)] leading-none">GILET</h1>
-            <h3 class="mt-2 text-[clamp(1rem,3vw,5rem)]">DEVELOPER</h3>
+            <h3 class="mt-2 text-[clamp(1rem,3vw,5rem)]" data-i18n="developer">DEVELOPER</h3>
 			</div>
 		</div>
 	</section>
 
 	<section id="presentation" class="mt-30 scroll-mt-15">
 		<div class="flex w-fit flex-col items-center mx-auto">
-			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PRESENTATION</h3>
+			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold" data-i18n='nav.presentation'>PRESENTATION</h3>
 			<div class="mt-5 h-1 w-[80%] bg-primary-200 dark:bg-secondary-200"></div>
 		</div>
 		<div  class="mx-auto mt-20 flex max-w-7xl flex-col items-center gap-10 px-6 md:flex-row md:items-center md:gap-30	">
@@ -35,7 +35,7 @@ import Footer from '../components/Footer.astro';
 			</div>
 			<div>
 				<div class="absolute inset-0 flex -translate-y-full items-center justify-center bg-gray-500/60 transition-transform duration-500 ease-out group-hover:translate-y-0">
-					<a href={ResumePlaceholder.src} download class="text-lg font-bold text-white">
+					<a href={ResumePlaceholder.src} download class="text-lg font-bold text-white" data-i18n="dl.resume">
 						DOWNLOAD RESUME
 					</a>
 				</div>
@@ -47,7 +47,7 @@ import Footer from '../components/Footer.astro';
 			</div>
 		</div>
 		<a href="#contacts" class="flex flex-col items-center justify-center mt-18">
-			<span class="font-bold text-sm">
+			<span class="font-bold text-sm" data-i18n="more.details">
 				MORE DETAILS
 			</span>
 			<IndicatorIcon class="w-5 h-5"/>
@@ -57,7 +57,7 @@ import Footer from '../components/Footer.astro';
 	<section id="projects" class="mt-20 scroll-mt-15">
 		<div class="flex flex-col items-center justify-center">
 			<div class="flex flex-col w-fit items-center justify-center">
-				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PROJECTS</h3>
+				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold" data-i18n='nav.projects'>PROJECTS</h3>
 				<div class="mt-5 h-1 w-[80%] bg-primary-200 dark:bg-secondary-200"></div>
 			</div>
 			<span class="text-center mt-20 m-30 text-2xl">
@@ -74,7 +74,7 @@ import Footer from '../components/Footer.astro';
 		]} />
 		</section>
 		<a href="#contacts" class="flex flex-col items-center justify-center mt-5">
-			<span class="font-bold text-sm">MORE DETAILS</span>
+			<span class="font-bold text-sm" data-i18n="more.details">MORE DETAILS</span>
 			<IndicatorIcon class="w-5 h-5"/>
 		</a>
 	</section>
@@ -105,13 +105,13 @@ import Footer from '../components/Footer.astro';
 				</div>
 			</div>
 			<div class="flex flex-col items-center justify-center mt-20">
-				<span class="font-bold">
+				<span class="font-bold" data-i18n='sendme.message'>
 					SEND ME A MESSAGE !
 				</span>
 				<form id="contact-form" class="mt-8 flex w-full max-w-md flex-col gap-5">
-  					<input type="email" name="email" placeholder="Your Email" required maxlength="254" class="bg-gray-200 text-gray-800 placeholder:text-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-  					<input type="text" name="name" placeholder="Your Name" required maxlength="100" class="bg-gray-200 text-gray-800 placeholder:text-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-  					<textarea name="message" placeholder="Your Message" required maxlength="5000" class="bg-gray-200 text-gray-800 placeholder:text-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+  					<input type="email" name="email" data-i18n-placeholder="contact.emailPlaceholder" placeholder="Your Email" required maxlength="254" class="bg-gray-200 text-gray-800 placeholder:text-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+  					<input type="text" name="name" data-i18n-placeholder='contact.namePlaceholder' placeholder="Your Name" required maxlength="100" class="bg-gray-200 text-gray-800 placeholder:text-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+  					<textarea name="message" data-i18n-placeholder='contact.messagelPlaceholder' placeholder="Your Message" required maxlength="5000" class="bg-gray-200 text-gray-800 placeholder:text-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
 
   				<!-- Honeypot anti-bot -->
   					<input 
@@ -131,7 +131,7 @@ import Footer from '../components/Footer.astro';
 			</div>	
 		</div>
 		<a href="#hero" class="flex flex-col items-center justify-center mt-10">
-			<span class="font-bold text-sm">
+			<span class="font-bold text-sm" data-i18n="scroll.top">
 				SCROLL TO TOP
 			</span>
 			<IndicatorIcon class="w-5 h-5 rotate-180"/>
