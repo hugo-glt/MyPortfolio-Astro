@@ -2,17 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Placeholder from '../assets/assets_images/placeholder-1.png';
 import Style from '../styles/global.css';
-import SettingsIcon from '../assets/assets_portfolio/settings.svg';	
-import Indicator from '../assets/assets_portfolio/indicator-down.svg';
+import IndicatorIcon from '../components/icons/IndicatorIcon.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
-import ProfilePic from '../assets/assets_portfolio/profile-circle.svg';
-import Gitlogo from '../assets/assets_portfolio/GitHub_Lockup_Black_Clearspace.svg';
-import LinkedinLogo from '../assets/assets_portfolio/linkedin.svg';
+import ProfileIcon from '../components/icons/ProfileIcon.astro';
+import GitlogoIcon from '../components/icons/GithubIcon.astro';
+import LinkedinLogoIcon from '../components/icons/LinkdinIcon.astro';
 import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 import Footer from '../components/Footer.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
@@ -30,7 +26,7 @@ import Footer from '../components/Footer.astro';
 	<section id="presentation" class="mt-30 scroll-mt-15">
 		<div class="flex w-fit flex-col items-center mx-auto">
 			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PRESENTATION</h3>
-			<div class="mt-5 h-1 w-[80%] bg-black"></div>
+			<div class="mt-5 h-1 w-[80%] bg-primary-200 dark:bg-secondary-200"></div>
 		</div>
 		<div  class="mx-auto mt-20 flex max-w-7xl flex-col items-center gap-10 px-6 md:flex-row md:items-center md:gap-30	">
 			<div class=" shrink-0 group relative w-fit overflow-hidden">
@@ -54,15 +50,15 @@ import Footer from '../components/Footer.astro';
 			<span class="font-bold text-sm">
 				MORE DETAILS
 			</span>
-			<img src={Indicator.src} alt="Indicator_More_Details" class="w-5 h-5"/>
+			<IndicatorIcon class="w-5 h-5"/>
 		</a>
 	</section>
-<section class="bg-white text-gray-900 dark:bg-secondary-500 dark:text-white transition-colors duration-300">
+<section class="bg-primary-100 text-gray-900 dark:bg-secondary-100 dark:text-white transition-colors duration-300">
 	<section id="projects" class="mt-20 scroll-mt-15">
 		<div class="flex flex-col items-center justify-center">
 			<div class="flex flex-col w-fit items-center justify-center">
 				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PROJECTS</h3>
-				<div class="mt-5 h-1 w-[80%] bg-black"></div>
+				<div class="mt-5 h-1 w-[80%] bg-primary-200 dark:bg-secondary-200"></div>
 			</div>
 			<span class="text-center mt-20 m-30 text-2xl">
 				lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -79,7 +75,7 @@ import Footer from '../components/Footer.astro';
 		</section>
 		<a href="#contacts" class="flex flex-col items-center justify-center mt-5">
 			<span class="font-bold text-sm">MORE DETAILS</span>
-			<img src={Indicator.src} alt="Indicator_More_Details" class="w-5 h-5"/>
+			<IndicatorIcon class="w-5 h-5"/>
 		</a>
 	</section>
 </section>
@@ -88,22 +84,22 @@ import Footer from '../components/Footer.astro';
 		<div class="flex flex-col items-center justify-center">
 			<div class="flex flex-col w-fit items-center justify-center">
 				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">CONTACTS</h3>
-				<div class="mt-5 h-1 w-[80%] bg-black"></div>
+				<div class="mt-5 h-1 w-[80%] bg-primary-200 dark:bg-secondary-200"></div>
 			</div>
 		</div>
 		<div class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
 			<div class="flex flex-col items-center justify-center mt-20">
-				<img src={ProfilePic.src} class="w-25 h-25 rounded-full" alt="Profile Picture" />
+				<ProfileIcon class="w-25 h-25 rounded-full"/>
 				<div class="mt-14">
 					<span class="mx-auto max-w-md text-center">
 					lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 					</span>
 					<div class="flex items-center justify-center gap-5 mt-5">
 						<a href="https://github.com/hugo-glt" target="_blank" rel="noopener noreferrer">
-						<img src={Gitlogo.src} class="w-30 h-30" alt="GitHub Logo" />
+						<GitlogoIcon class="w-10 h-10"/>
 						</a>
 						<a href="https://www.linkedin.com/in/hugo-gilet-9a2079352" target="_blank" rel="noopener noreferrer">
-						<img src={LinkedinLogo.src} class="w-10 h-10" alt="LinkedIn Logo" />
+						<LinkedinLogoIcon class="w-10 h-10"/>
 						</a>
 					</div>
 				</div>
@@ -126,7 +122,7 @@ import Footer from '../components/Footer.astro';
     					style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" 
     					aria-hidden="true" />
 
-  					<button type="submit" class="bg-black text-white py-2 px-4 rounded">Send</button>
+  					<button type="submit" class="bg-primary-50 text-white py-2 px-4 rounded">Send</button>
   					<div id="form-alert" class="form-alert" role="status" aria-live="polite" hidden>
     					<span id="form-alert-icon" class="form-alert-icon"></span>
     					<span id="form-alert-text" class="form-alert-text"></span>
@@ -134,11 +130,11 @@ import Footer from '../components/Footer.astro';
 				</form>
 			</div>	
 		</div>
-		<a href="#hero" class="flex flex-col items-center justify-center mt-3">
+		<a href="#hero" class="flex flex-col items-center justify-center mt-10">
 			<span class="font-bold text-sm">
 				SCROLL TO TOP
 			</span>
-			<img src={Indicator.src} class="w-5 h-5 rotate-180" alt="Scroll to Top" />
+			<IndicatorIcon class="w-5 h-5 rotate-180"/>
 		</a>
 	</section>
 </Layout>
