@@ -29,12 +29,12 @@ const { navLinks } = Astro.props;
     	<title>Portfolio</title>
     	<!-- À ajouter plus tard : meta description, OG -->
     </head>
-    <body class="min-h-screen flex flex-col">
+    <body class="min-h-screen flex flex-col bg-primary-100 dark:bg-secondary-100 text-primary-200 dark:text-secondary-200">
     	<Navbar pinned={navbarPinned} links={navLinks} />
 		<main>
     		<slot />
 		</main>
-		<footer class="border-t bg-primary-900 dark:bg-secondary-500 w-full dark:text-white transition-colors duration-300 	mt-30">
+		<footer class="border-t bg-primary-300 dark:bg-secondary-500 w-full text-primary-200 dark:text-secondary-200 transition-colors duration-300 mt-30">
 			<Footer />
 		</footer>
 	</body>
