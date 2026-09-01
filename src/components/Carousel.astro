@@ -152,12 +152,17 @@ const {
     font-weight: 700;
     letter-spacing: 0.05em;
     color: white;
-    background-color: var(--color-primary-900);
+    background-color: var(--color-primary-300);
     border-radius: 0 0 0.5rem 0;
     }
+    :global(.dark) .carousel-counter {
+    background-color: var(--color-secondary-200);
+    color: var(--color-secondary-100)
+}
 
     .carousel-counter-sep {
     opacity: 0.5;
+
     }
 
     /* --- Structure principale --- */
@@ -165,10 +170,9 @@ const {
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: var(--color-primary-500);
+    color: var(--color-primary-900);
     padding-top: 3rem; /* laisse la place au compteur */
     }
-
     .carousel-viewport {
     flex: 1;
     overflow: hidden;
@@ -210,13 +214,21 @@ const {
     font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: var(--color-primary-900);
+    color: var(--color-primary-300);
     }
 
     .carousel-paragraph {
     font-size: 0.9375rem;
     line-height: 1.6;
-    color: var(--color-primary-700, #444);
+    color: var(--color-primary-200);
+    }
+
+    :global(.dark) .carousel-title {
+    color: var(--color-secondary-200)
+    }
+    
+    :global(.dark) .carousel-paragraph {
+    color: var(--color-secondary-200)
     }
 
     /* --- Bloc image (droite) --- */
