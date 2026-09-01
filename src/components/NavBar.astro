@@ -3,8 +3,10 @@ import SettingsIcon from '../components/icons/SettingsIcon.astro';
 import MoonIcon from '../components/icons/MoonIcon.astro';
 import SunIcon from '../components/icons/SunIcon.astro';
 import LeftArrow from '../components/icons/ArrowLeftIcon.astro';
+import { applyLanguage, initLanguage, getStoredLang } from '../i18n/applyLanguage.ts';
 
 export interface NavLink {
+    key: string; 
     label: string;
     href: string;
 }
@@ -16,9 +18,9 @@ interface Props {
 }
 
 const DEFAULT_LINKS: NavLink[] = [
-    { label: 'PRESENTATION', href: '#presentation' },
-    { label: 'PROJECTS', href: '#projects' },
-    { label: 'CONTACTS', href: '#contacts' },
+    { key: 'nav.presentation', label: 'PRÉSENTATION', href: '#presentation' },
+    { key: 'nav.projects', label: 'PROJETS', href: '#projects' },
+    { key: 'nav.contacts', label: 'CONTACTS', href: '#contacts' },
 ];
 
 const {
@@ -44,8 +46,8 @@ const isHome = Astro.url.pathname === '/';
     )}
     <div class="flex items-center justify-center h-full gap-12">
         {links.map((link) => (
-            <a href={link.href} class="font-bold">
-                {link.label}
+            <a href={link.href} class="font-bold" data-i18n={link.key}>
+            {link.label}
             </a>
         ))}
     </div>
@@ -66,10 +68,10 @@ const isHome = Astro.url.pathname === '/';
             <MoonIcon class="w-6 h-6 text-primary-200 dark:text-secondary-200"/>
         </div>
 	<div class="mt-4">
-		<label class="mb-2 flex flex-col justify-center items-center font-bold">Language</label>
-		<select class="w-full rounded-lg border px-3 py-2">
-			<option>English</option>
-			<option>Français</option>
+		<label class="mb-2 flex flex-col justify-center items-center font-bold " data-i18n="nav.language">Language</label>
+		<select id="lang-select" class="w-full rounded-lg border px-3 py-2">
+			<option value="en">English</option>
+			<option value="fr">Français</option>
 		</select>
         </div>
 	</div>
@@ -79,6 +81,8 @@ const isHome = Astro.url.pathname === '/';
 
 
 <script>
+    import { applyLanguage, initLanguage, getStoredLang } from '../i18n/applyLanguage.ts';
+
     const hero = document.getElementById('hero');
     const navbar = document.getElementById('navbar');
     const settingsBtn = document.getElementById('settings-btn') as HTMLButtonElement;
@@ -229,6 +233,16 @@ const isHome = Astro.url.pathname === '/';
     }, { threshold: 0 });
 
     observer.observe(hero);
+}
+    // Language switch
+    const langSelect = document.getElementById('lang-select') as HTMLSelectElement;
+
+    initLanguage();
+    if (langSelect) {
+        langSelect.value = getStoredLang();
+        langSelect.addEventListener('change', () => {
+        applyLanguage(langSelect.value as 'fr' | 'en');
+    });
 }
     
 </script>
