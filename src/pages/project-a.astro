@@ -38,14 +38,14 @@ const projectSlides = [
         <div class="relative">
 			<img src={Placeholder.src} alt="Project A Picture" class="relative w-full"/>
 			<div class="absolute left-[3%] top-1/2 -translate-y-1/2 font-bold">
-            <h1 class="text-[clamp(2.5rem,8vw,12rem)] leading-none">PROJECT A</h1>
-            <h3 class="mt-2 text-[clamp(1rem,3vw,5rem)]">LANGUAGE USED</h3>
+            <h1 class="text-[clamp(2.5rem,8vw,12rem)] leading-none">MyPORFOLIO</h1>
+            <h3 class="mt-2 text-[clamp(1rem,3vw,5rem)]">ASTRO</h3>
 			</div>
 		</div>
     </section>
     <section id="project-a-presentation" class="mt-30 scroll-mt-15">
 		<div class="flex w-fit flex-col items-center mx-auto">
-			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">PRESENTATION</h3>
+			<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold" data-i18n="nav.presentation">PRESENTATION</h3>
 			<div class="mt-5 h-1 w-[80%] bg-primary-200 dark:bg-secondary-200"></div>
 		</div>
         <div class="mx-auto mt-20 flex max-w-7xl flex-col items-center gap-10 px-6 md:flex-row md:items-center md:gap-30	">
@@ -53,7 +53,7 @@ const projectSlides = [
 			</span>
 		</div>
         <a href="/#contacts" class="flex flex-col items-center justify-center mt-18">
-			<span class="font-bold text-sm">
+			<span class="font-bold text-sm" data-i18n="more.details">
 				MORE DETAILS
 			</span>
 			<IndicatorIcon class="w-5 h-5"/>
@@ -68,7 +68,7 @@ const projectSlides = [
 			<Carousel slides={projectSlides} />
 		</div>
 		<a href="/#contacts" class="flex flex-col items-center justify-center mt-18">
-			<span class="font-bold text-sm">
+			<span class="font-bold text-sm" data-i18n="more.details">
 				MORE DETAILS
 			</span>
 			<IndicatorIcon class="w-5 h-5"/>
