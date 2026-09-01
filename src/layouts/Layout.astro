@@ -1,13 +1,7 @@
 ---
 import '../styles/global.css'  
-import Navbar from '../components/NavBar.astro';
+import Navbar, { type NavLink } from '../components/NavBar.astro';
 import Footer from "../components/Footer.astro";
-
-type NavLink = {
-	label: string;
-	href: string;
-	external?: boolean;
-};
 
 interface Props {
 	navLinks?: NavLink[];
