@@ -40,11 +40,14 @@ const { projects } = Astro.props;
 
     gap: 6px;
 
-    background: var(--color-primary-900);
+    background: var(--color-primary-300);
     padding: 15px;
     border-radius: 15px;
 
     min-height: 400px;
+    }
+    :global(.dark) .project-grid {
+        background: var(--color-secondary-500);
     }
 
     .project-a { grid-area: a; }
