@@ -1,20 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Placeholder from '../assets/assets_images/placeholder-1.png';
 import Style from '../styles/global.css';
 import IndicatorIcon from '../components/icons/IndicatorIcon.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
 import ProfileIcon from '../components/icons/ProfileIcon.astro';
+import Resume from '../assets/assets_images/GILET_HUGO_CV.png';
+import ResumeDl from '../assets/assets_images/GILET_HUGO_CV.pdf';
 import GitlogoIcon from '../components/icons/GithubIcon.astro';
 import LinkedinLogoIcon from '../components/icons/LinkdinIcon.astro';
-import ResumePlaceholder from '../assets/assets_images/placeholder-resume.jpg';
 import Footer from '../components/Footer.astro';
+import HeroImage from '../assets/assets_images/heroimage.jpg';
+import ComingSoon from '../assets/assets_images/comingsoon.png';
+import PortfolioImage from '../assets/assets_images/myportfolioastro.png';
 ---
 
 <Layout>
 	<section id="hero">
 		<div class="relative">
-			<img src={Placeholder.src} alt="Profile Picture" class="relative w-full"/>
+			<img src={HeroImage.src} alt="Profile Picture" class="relative w-full"/>
 			<div class="absolute left-[3%] top-1/2 -translate-y-1/2 font-bold">
             <h1 class="text-[clamp(2.5rem,8vw,12rem)] leading-none">HUGO</h1>
             <h1 class="text-[clamp(2.5rem,8vw,12em)] leading-none">GILET</h1>
@@ -31,19 +34,20 @@ import Footer from '../components/Footer.astro';
 		<div  class="mx-auto mt-20 flex max-w-7xl flex-col items-center gap-10 px-6 md:flex-row md:items-center md:gap-30	">
 			<div class=" shrink-0 group relative w-fit overflow-hidden">
 			<div>
-				<img src={ResumePlaceholder.src} alt="Resume" class="block h-auto w-[clamp(400px,25vw,600px)]"/>
+				<img src={Resume.src} alt="Resume" class="block h-auto w-[clamp(400px,25vw,600px)]"/>
 			</div>
 			<div>
 				<div class="absolute inset-0 flex -translate-y-full items-center justify-center bg-gray-500/60 transition-transform duration-500 ease-out group-hover:translate-y-0">
-					<a href={ResumePlaceholder.src} download class="text-lg font-bold text-white" data-i18n="dl.resume">
+					<a href={ResumeDl} download class="text-lg font-bold text-white" data-i18n="dl.resume">
 						DOWNLOAD RESUME
 					</a>
 				</div>
 			</div>
 		</div>
-			<div>
-				<span class="text-2xl text-center">lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</span>
+			<div class="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
+				<span class="text-2xl text-center" data-i18n="presentation.text.first"></span>
+				<span class="text-2xl text-center" data-i18n="presentation.text.second"></span>
+				<span class="text-2xl text-center" data-i18n="presentation.text.third"></span>
 			</div>
 		</div>
 		<a href="#contacts" class="flex flex-col items-center justify-center mt-18">
@@ -60,17 +64,15 @@ import Footer from '../components/Footer.astro';
 				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold" data-i18n='nav.projects'>PROJECTS</h3>
 				<div class="mt-5 h-1 w-[80%] bg-primary-200 dark:bg-secondary-200"></div>
 			</div>
-			<span class="text-center mt-20 m-30 text-2xl">
-				lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-			</span>
+			<span class="text-center mt-20 m-30 text-2xl" data-i18n="projects.text"></span>
 		</div>
 		<section class="mt-5 m-30">
             <ProjectGrid projects={[
-  			{ id: 'a', href: '/project-a', image: Placeholder.src, title: 'MyPortfolio', category: 'Astro' },
-  			{ id: 'b', href: '/project-b', image: Placeholder.src, title: 'Coming Soon...', category: 'Work in Progress' },
-  			{ id: 'c', href: '/project-c', image: Placeholder.src, title: 'Coming Soon...', category: 'Work in Progress' },
-  			{ id: 'd', href: '/project-d', image: Placeholder.src, title: 'Coming Soon...', category: 'Work in Progress' },
-  			{ id: 'e', href: '/project-e', image: Placeholder.src, title: 'Coming Soon...', category: 'Work in Progress' },
+  			{ id: 'a', href: '/project-a', image: PortfolioImage, title: 'MyPortfolio', category: 'Astro' },
+  			{ id: 'b', href: '/project-b', image: ComingSoon, title: 'Coming Soon...', category: 'Work in Progress' },
+  			{ id: 'c', href: '/project-c', image: ComingSoon, title: 'Coming Soon...', category: 'Work in Progress' },
+  			{ id: 'd', href: '/project-d', image: ComingSoon, title: 'Coming Soon...', category: 'Work in Progress' },
+  			{ id: 'e', href: '/project-e', image: ComingSoon, title: 'Coming Soon...', category: 'Work in Progress' },
 		]} />
 		</section>
 		<a href="#contacts" class="flex flex-col items-center justify-center mt-5">
@@ -90,9 +92,8 @@ import Footer from '../components/Footer.astro';
 		<div class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
 			<div class="flex flex-col items-center justify-center mt-20">
 				<ProfileIcon class="w-25 h-25 rounded-full"/>
-				<div class="mt-14">
-					<span class="mx-auto max-w-md text-center">
-					lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				<div class="mt-14 text-center">
+					<span class="mx-auto max-w-md text-center" data-i18n="contact.text">
 					</span>
 					<div class="flex items-center justify-center gap-5 mt-5">
 						<a href="https://github.com/hugo-glt" target="_blank" rel="noopener noreferrer">

@@ -16,7 +16,7 @@ const { projects } = Astro.props;
 <div class="project-grid">
     {projects.map((p: Project) => (
         <a href={p.href} class={`project-card project-${p.id} relative block overflow-hidden rounded-lg`}>
-            <img src={Placeholder.src} alt="Project" class="w-full h-full object-cover" />
+            <img src={p.image.src} alt={p.title} class="w-full h-full object-cover" />
             <div class="absolute bottom-0 left-0 right-0 p-3 bg-linear-to-t from-black/70 to-transparent text-white">
                 <h3 class="font-heading text-sm font-semibold">{p.title}</h3>
                 <p class="font-body text-xs opacity-90">{p.category}</p>
