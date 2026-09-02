@@ -2,6 +2,8 @@ export type Lang = 'fr' | 'en';
 
 export const translations = {
     fr: {
+
+        // INDEX PAGE & NAVIGATION
         'nav.presentation': 'PRÉSENTATION',
         'nav.projects': 'PROJETS',
         'nav.contacts': 'CONTACTS',
@@ -15,6 +17,14 @@ export const translations = {
         'developer': 'DÉVELOPPEUR',
         'dl.resume': 'TÉLÉCHARGER LE CV',
         'send': 'ENVOYER',
+        'presentation.text.first': 'Actuellement en deuxième année de BTS SIO, spécialité SLAM, je suis en formation pour devenir développeur Full Stack et je suis à la recherche d’une alternance afin de développer mes compétences et mon expérience professionnelle.',
+        'presentation.text.second': 'Passionné par l’informatique, la conception de logiciels et les applications web, j’aime concevoir des projets concrets et explorer de nouvelles technologies.',
+        'presentation.text.third': 'Ce portfolio retrace mon parcours et présente les différents projets que j’ai réalisés, leur conception ainsi que les technologies utilisées. Il sera également régulièrement mis à jour afin d’accueillir mes futurs projets et nouvelles réalisations, témoignant de mon évolution dans le domaine du développement.',
+        'contact.text': "Je reste à votre disposition pour toute question, opportunité ou échange professionnel. N’hésitez pas à me contacter à tout moment ou à suivre mon évolution et mes projets sur GitHub et LinkedIn.",
+        'projects.text': "Découvrez les différents projets que j’ai réalisés au cours de ma formation et de mes expériences personnelles. Chaque projet présente les technologies utilisées, les objectifs ainsi que les différentes étapes de sa réalisation. Cette section sera régulièrement mise à jour afin d’accueillir mes futurs projets et nouvelles réalisations, et de suivre mon évolution en tant que développeur.", 
+
+        // FOOTER
+        
         'full.stack': "Développeur full-stack en formation. Passionné par l'informatique, la conception de logiciels et les applications web.",
 
         // TEXTES LÉGAUX
@@ -111,6 +121,9 @@ export const translations = {
         'legal.contact.description': "Pour toute question relative à ce site, tu peux me contacter via le formulaire de contact ou à l'adresse hg.gilet@gmail.com.",
     },
     en: {
+
+        // INDEX PAGE & NAVIGATION
+
         'nav.presentation': 'PRESENTATION',
         'nav.projects': 'PROJECTS',
         'nav.contacts': 'CONTACTS',
@@ -124,6 +137,13 @@ export const translations = {
         'developer': 'DEVELOPER',
         'dl.resume': 'DOWNLOAD RESUME',
         'send': 'SEND',
+        'presentation.text.first': 'Currently in the second year of BTS SIO, SLAM specialty, I am training to become a Full Stack developer and I am looking for an apprenticeship to develop my skills and professional experience.',
+        'presentation.text.second': 'Passionate about computers, software design, and web applications, I enjoy designing concrete projects and exploring new technologies.',
+        'presentation.text.third': 'This portfolio traces my background and presents the various projects I have completed, their design, and the technologies used. It will also be regularly updated to include my future projects and new achievements, reflecting my growth in the field of development.',
+        'contact.text': 'I am available at any time for any questions, opportunities, or professional discussions. Feel free to contact me or follow my progress and projects on GitHub and LinkedIn.',
+        'projects.text': " Explore the different projects I have developed throughout my studies and personal experiences. Each project showcases the technologies used, its objectives, and the different stages of its development. This section will be regularly updated with my future projects and new achievements, allowing you to follow my growth as a developer.", 
+
+        // FOOTER
         'full.stack': 'Fullstack developer in training. Passionate about computers, software design, and web applications.',
         'privacy.policy': 'PRIVACY POLICY',
         'credit.licenses': 'CREDITS AND LICENSES',
