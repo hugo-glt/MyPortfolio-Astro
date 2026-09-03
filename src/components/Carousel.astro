@@ -6,59 +6,72 @@
 // Un compteur "01 / 04" est affiché en haut à gauche du carousel.
 
 
-export interface CarouselSlide {
-    title: string;
-    text: string;
-    imageSrc: string;
-    imageAlt?: string;
-}
+    export interface CarouselSlide {
+        title: string;
+        text: string[];
+        imageSrc: string;
+        imageAlt?: string;
+        titleKey?: string;
+        textKey?: string[];
+        htmlIndexes?: number[];
+    }
 
-interface Props {
-    slides: CarouselSlide[];
-    /** Chemin des icônes de flèche (temporaires, à remplacer). */
-    arrowLeftSrc?: string;
-    arrowRightSrc?: string;
-}
+    interface Props {
+        slides: CarouselSlide[];
+        /** Chemin des icônes de flèche (temporaires, à remplacer). */
+        arrowLeftSrc?: string;
+        arrowRightSrc?: string;
+    }
 
-const {
-    slides,
-    arrowLeftSrc = 'https://placehold.co/32x32/png?text=%3C',
-    arrowRightSrc = 'https://placehold.co/32x32/png?text=%3E',
-} = Astro.props;
----
+    const {
+        slides,
+        arrowLeftSrc = 'https://placehold.co/32x32/png?text=%3C',
+        arrowRightSrc = 'https://placehold.co/32x32/png?text=%3E',
+    } = Astro.props;
+    ---
 
-<section class="carousel" data-carousel aria-roledescription="carousel">
-    <!-- Compteur de page -->
-    <div class="carousel-counter" aria-live="polite">
-    <span data-current>01</span>
-    <span class="carousel-counter-sep">/</span>
-    <span data-total>{String(slides.length).padStart(2, '0')}</span>
-    </div>
+    <section class="carousel" data-carousel aria-roledescription="carousel">
+        <!-- Compteur de page -->
+        <div class="carousel-counter" aria-live="polite">
+        <span data-current>01</span>
+        <span class="carousel-counter-sep">/</span>
+        <span data-total>{String(slides.length).padStart(2, '0')}</span>
+        </div>
 
-    <div class="carousel-body">
-    <!-- Flèche précédente -->
-    <button
-        type="button"
-        class="carousel-arrow carousel-arrow-left"
-        data-prev
-        aria-label="Slide précédente">
-        <img src={arrowLeftSrc} alt="" class="carousel-arrow-icon" />
-    </button>
+        <div class="carousel-body">
+        <!-- Flèche précédente -->
+        <button
+            type="button"
+            class="carousel-arrow carousel-arrow-left"
+            data-prev
+            aria-label="Slide précédente">
+            <img src={arrowLeftSrc} alt="" class="carousel-arrow-icon" />
+        </button>
 
-    <!-- Fenêtre visible -->
-    <div class="carousel-viewport">
-        <div class="carousel-track" data-track>
-        {slides.map((slide, i) => (
-            <article
-                class="carousel-slide"
-                role="group"
-                aria-roledescription="slide"
-                aria-label={`${i + 1} sur ${slides.length}`}
-                aria-hidden={i === 0 ? 'false' : 'true'}>
-            <div class="carousel-text">
-                <h3 class="carousel-title">{slide.title}</h3>
-                <p class="carousel-paragraph">{slide.text}</p>
-            </div>
+        <!-- Fenêtre visible -->
+        <div class="carousel-viewport">
+            <div class="carousel-track" data-track>
+            {slides.map((slide, i) => (
+                <article
+                    class="carousel-slide"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`${i + 1} sur ${slides.length}`}
+                    aria-hidden={i === 0 ? 'false' : 'true'}>
+                <div class="carousel-text">
+                    <h3 class="carousel-title" data-i18n={slide.titleKey}>
+                    {slide.title}
+                </h3>
+                {slide.text.map((paragraph, j) => (
+                slide.htmlIndexes?.includes(j) ? (
+                    <p class="carousel-paragraph" data-i18n-html={slide.textKey?.[j]} set:html={paragraph} />
+                    ) : (
+                        <p class="carousel-paragraph" data-i18n={slide.textKey?.[j]}>
+                            ) {paragraph}
+                        </p>
+                        )
+                        ))}
+                        </div>
             <div class="carousel-image">
                 <img src={slide.imageSrc} alt={slide.imageAlt ?? ''} loading="lazy" />
             </div>

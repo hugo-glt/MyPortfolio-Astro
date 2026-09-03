@@ -27,6 +27,26 @@ export const translations = {
         
         'full.stack': "Développeur full-stack en formation. Passionné par l'informatique, la conception de logiciels et les applications web.",
 
+        // PROJET MyPORTFOLIO
+
+        'pa.presentation.text.first': "Ce projet regroupe la conception et le développement de mon portfolio personnel, ainsi que la mise en place de son environnement technique.", 
+        'pa.presentation.text.second': " Il témoignera de mes futurs projets et avancera dans le milieu de développement.", 
+        'pa.presentation.text.third': "Il m’a permis d’approfondir mes compétences en développement web avec TypeScript, Astro et Tailwind CSS, tout en découvrant de nouvelles pratiques autour de GitHub, des API REST et de l’auto-hébergement.", 
+        'pa.presentation.text.fourth': "Il représente également une démarche personnelle visant à expérimenter, recycler du matériel informatique et développer mes compétences à travers un projet concret.", 
+        'pa.presentation.text.fifth': "Ce projet est en constante évolution et sera régulièrement mis à jour. Des ameliorations et de nouvelles fonctionnalités seront ajoutées au fil du temps, reflétant mon apprentissage continu et mon engagement envers l'amélioration de mes compétences en développement web.",
+
+        'pa.slide.one.title': "GitHub & bonnes pratiques",
+        'pa.slide.one.text.first': "Ce projet m’a permis de me familiariser davantage avec GitHub et d’adopter de bonnes pratiques dans la gestion d’un projet, de sa préparation à son suivi. J’ai notamment travaillé sur l’organisation du projet, la gestion des versions et sa documentation afin de mettre en place une méthode de travail plus structurée.",
+        'pa.slide.one.text.second': 'Pour consulter le code source et l’ensemble des détails techniques, rendez-vous sur le repository GitHub. Toutes les informations concernant l’installation, le fonctionnement et les choix techniques sont disponibles dans le <a href="https://github.com/hugo-glt/MyPortfolio-Astro.git#readme" target="_blank" rel="noopener noreferrer" class="underline font-semibold">README</a>.',
+
+        'pa.slide.two.title': "Développement du portfolio",
+        'pa.slide.two.text.first': "Ce projet a également été l’occasion de découvrir Astro et Tailwind CSS, que j’utilisais pour la première fois, tout en approfondissant mes connaissances en TypeScript.",
+        'pa.slide.two.text.second': "J’ai notamment développé une API REST dédiée au formulaire de contact. L’endpoint POST /api/contact réceptionne les données, valide et nettoie les entrées, puis envoie le message via SMTP avec Nodemailer. Un système de rate limiting a également été mis en place afin de limiter les abus et protéger l’API.",
+
+        "pa.slide.three.title": "Auto-hébergement",
+        "pa.slide.three.text.first": "Une partie du projet repose également sur la mise en place d’un système auto-hébergé. Ce choix est à la fois personnel et technique : passionné par l’informatique, je souhaitais recycler du matériel ancien tout en développant mes compétences en administration système, réseaux et déploiement.",
+        "pa.slide.three.text.second": "L’auto-hébergement me permet également de disposer d’un environnement de développement et de test que je contrôle entièrement, facilitant ainsi mes expérimentations et l’apprentissage de nouvelles technologies.",
+
         // TEXTES LÉGAUX
 
         'privacy.policy': 'POLITIQUE DE CONFIDENTIALITÉ',
@@ -148,6 +168,27 @@ export const translations = {
         'privacy.policy': 'PRIVACY POLICY',
         'credit.licenses': 'CREDITS AND LICENSES',
         'legal.notices': 'LEGAL NOTICES', 
+
+        // PROJET MyPORTFOLIO
+
+        'pa.presentation.text.first': "This project brings together the design and development of my personal portfolio, as well as the setup of its technical environment.",
+        'pa.presentation.text.second': " It will showcase my future projects and document my progress in the development field.",
+        'pa.presentation.text.third': "It has allowed me to deepen my web development skills with TypeScript, Astro, and Tailwind CSS, while exploring new practices involving GitHub, REST APIs, and self-hosting.",
+        'pa.presentation.text.fourth': "It also represents a personal initiative aimed at experimenting, giving old computer hardware a second life, and developing my skills through a practical project.",
+        'pa.presentation.text.fifth': "This project is constantly evolving and will be regularly updated. Improvements and new features will be added over time, reflecting my continuous learning and commitment to improving my web development skills.",
+
+        'pa.slide.one.title': "GitHub & Best Practices",
+        'pa.slide.one.text.first': "This project allowed me to become more familiar with GitHub and adopt good practices for managing a project, from its preparation to its ongoing development and monitoring. I worked on project organization, version control, and documentation to establish a more structured workflow.",
+        'pa.slide.one.text.second': 'To view the source code and all the technical details, please refer to the GitHub repository. All information regarding installation, functionality, and technical choices is available in the <a href="https://github.com/hugo-glt/MyPortfolio-Astro.git#readme" target="_blank" rel="noopener noreferrer" class="underline font-semibold">README</a>..',
+
+        'pa.slide.two.title': "Portfolio Development",
+        'pa.slide.two.text.first': "This project was also an opportunity to discover Astro and Tailwind CSS, which I was using for the first time, while further developing my knowledge of TypeScript.",
+        'pa.slide.two.text.second': "I developed a REST API dedicated to the contact form. The POST /api/contact endpoint receives the submitted data, validates and sanitizes the inputs, and then sends the message via SMTP using Nodemailer. A rate-limiting system was also implemented to limit abuse and protect the API.",
+
+        "pa.slide.three.title": "Self-Hosting",
+        "pa.slide.three.text.first": "Part of the project also involves setting up a self-hosted system. This was both a personal and technical choice: as someone passionate about IT, I wanted to give old hardware a second life while developing my skills in system administration, networking, and deployment.",
+        "pa.slide.three.text.second": "Self-hosting also allows me to have a fully controlled development and testing environment, making it easier to experiment and learn new technologies.",
+
 
         // TEXTE 1 — Privacy Policy
 

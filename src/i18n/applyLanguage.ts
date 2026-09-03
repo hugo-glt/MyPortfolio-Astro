@@ -28,6 +28,12 @@ function updateTexts(lang: Lang): void {
         const text = translations[lang][key as keyof typeof translations[typeof lang]];
         if (text) el.placeholder = text;
     });
+
+    document.querySelectorAll<HTMLElement>('[data-i18n-html]').forEach((el) => {
+    const key = el.dataset.i18nHtml as TranslationKey;
+    const text = translations[lang][key as keyof typeof translations[typeof lang]];
+    if (text) el.innerHTML = text;
+});
 }
 
 export function applyLanguage(lang: Lang): void {
