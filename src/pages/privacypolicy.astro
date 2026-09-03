@@ -2,40 +2,40 @@
 import Layout from '../layouts/Layout.astro';
 
 const NavLinks = [
-  	{ label: 'PRESENTATION', href: '/#presentation' },
-  	{ label: 'PROJECTS', href: '/#projects' },
-  	{ label: 'CONTACTS', href: '/#contacts' },
+  { key: 'nav.presentation', label: 'PRESENTATION', href: '/#presentation' },
+  { key: 'nav.projects', label: 'PROJECTS', href: '/#projects' },
+  { key: 'nav.contacts', label: 'CONTACTS', href: '/#contacts' },
 ];
 ---
 
 <Layout navbarPinned navLinks={NavLinks}>  
     <main class="mx-auto max-w-3xl px-6 py-24">
-    <h1 class="text-3xl font-bold mb-2">Politique de confidentialité</h1>
-    <p class="text-sm text-gray-500 mb-10">Dernière mise à jour : 31/08/2026 20:50 (UTC+2)</p>
+    <h1 class="text-3xl font-bold mb-2" data-i18n="privacy.title">Politique de confidentialité</h1>
+    <p class="text-sm text-gray-500 mb-10" data-i18n="privacy.lastUpdate">Dernière mise à jour : 31/08/2026 20:50 (UTC+2)</p>
 
     <section class="mb-10">
-        <h2 class="text-xl font-bold mb-3">Responsable du traitement</h2>
-        <p class="leading-relaxed">
+        <h2 class="text-xl font-bold mb-3" data-i18n="privacy.dataController.title">Responsable du traitement</h2>
+        <p class="leading-relaxed" data-i18n="privacy.dataController.description">
         Hugo Gilet, éditeur de ce site, est responsable du traitement des données
         personnelles collectées via le formulaire de contact.
         </p>
-        <p class="mt-2 leading-relaxed">
+        <p class="mt-2 leading-relaxed" data-i18n="privacy.dataController.contact">
         Pour toute question relative à vos données, vous pouvez me contacter à :
         <strong>hg.gilet@gmail.com</strong>
         </p>
     </section>
 
     <section class="mb-10">
-        <h2 class="text-xl font-bold mb-3">Données collectées</h2>
-        <p class="leading-relaxed mb-2">
+        <h2 class="text-xl font-bold mb-3" data-i18n="privacy.dataCollected.title">Données collectées</h2>
+        <p class="leading-relaxed mb-2" data-i18n="privacy.dataCollected.description">
         Lorsque vous utilisez le formulaire de contact de ce site, les données suivantes sont
         collectées :
         </p>
         <ul class="list-disc pl-6 space-y-1 leading-relaxed">
-        <li>Votre nom (tel que renseigné dans le formulaire)</li>
-        <li>Votre adresse email</li>
-        <li>Le contenu de votre message</li>
-        <li>
+        <li data-i18n="privacy.dataCollected.name">Votre nom (tel que renseigné dans le formulaire)</li>
+        <li data-i18n="privacy.dataCollected.email">Votre adresse email</li>
+        <li data-i18n="privacy.dataCollected.message">Le contenu de votre message</li>
+        <li data-i18n="privacy.dataCollected.ip">
         Votre adresse IP, à des fins strictement techniques de sécurité (limitation du nombre
         d'envois pour prévenir les abus et le spam)
         </li>
@@ -43,16 +43,16 @@ const NavLinks = [
     </section>
 
     <section class="mb-10">
-        <h2 class="text-xl font-bold mb-3">Finalité du traitement</h2>
-        <p class="leading-relaxed">
+        <h2 class="text-xl font-bold mb-3" data-i18n="privacy.purpose.title">Finalité du traitement</h2>
+        <p class="leading-relaxed" data-i18n="privacy.purpose.description">
         Ces données sont utilisées exclusivement pour répondre à votre demande de contact. Elles
         ne sont ni vendues, ni cédées, ni utilisées à des fins commerciales ou publicitaires.
         </p>
     </section>
 
     <section class="mb-10">
-        <h2 class="text-xl font-bold mb-3">Base légale</h2>
-        <p class="leading-relaxed">
+        <h2 class="text-xl font-bold mb-3" data-i18n="privacy.legalBasis.title">Base légale</h2>
+        <p class="leading-relaxed" data-i18n="privacy.legalBasis.description">
         Le traitement de vos données (nom, email, message) repose sur votre
         <strong> consentement</strong>, exprimé par l'envoi volontaire du formulaire. Le
         traitement de votre adresse IP repose sur l'
@@ -62,36 +62,32 @@ const NavLinks = [
     </section>
 
     <section class="mb-10">
-        <h2 class="text-xl font-bold mb-3">Destinataires des données</h2>
-        <p class="leading-relaxed">
+        <h2 class="text-xl font-bold mb-3" data-i18n="privacy.recipients.title">Destinataires des données</h2>
+        <p class="leading-relaxed" data-i18n="privacy.recipients.description">
         Les données transmises via le formulaire de contact sont reçues uniquement par
         l'éditeur du site, dans sa boîte email personnelle. L'envoi de cet email transite par
         les serveurs de Google (Gmail / Google Workspace), qui agit ici comme sous-traitant
         technique pour l'acheminement du message. Ce transfert peut impliquer un traitement
         hors de l'Union européenne, encadré par les clauses contractuelles types de Google.
         </p>
-        <p class="mt-2 leading-relaxed">Aucune autre entreprise ou service tiers n'a accès à ces données.</p>
+        <p class="mt-2 leading-relaxed" data-i18n="privacy.recipients.thirdParties">Aucune autre entreprise ou service tiers n'a accès à ces données.</p>
     </section>
 
     <section class="mb-10">
-        <h2 class="text-xl font-bold mb-3">Durée de conservation</h2>
+        <h2 class="text-xl font-bold mb-3" data-i18n="privacy.retention.title">Durée de conservation</h2>
         <ul class="list-disc pl-6 space-y-1 leading-relaxed">
         <li>
-            <strong>Nom, email, message :</strong> conservés dans la boîte email de l'éditeur
-            le temps nécessaire pour traiter ta demande, puis supprimés périodiquement. Ces
-            données ne sont pas stockées dans une base de données sur le serveur du site.
+            <strong data-i18n="privacy.retention.email">Nom, email, message :</strong> 
         </li>
         <li>
-            <strong>Adresse IP :</strong> conservée temporairement en mémoire du serveur
-            (quelques minutes) dans le seul but de limiter le nombre d'envois, puis supprimée
-            automatiquement.
+            <strong data-i18n="privacy.retention.ip">Adresse IP :</strong> 
         </li>
         </ul>
     </section>
 
     <section class="mb-10">
-        <h2 class="text-xl font-bold mb-3">Cookies et stockage local</h2>
-        <p class="leading-relaxed">
+        <h2 class="text-xl font-bold mb-3" data-i18n="privacy.cookies.title">Cookies et stockage local</h2>
+        <p class="leading-relaxed" data-i18n="privacy.cookies.description">
         Ce site n'utilise aucun cookie de suivi ni outil d'analyse d'audience (pas de Google
         Analytics ni équivalent). Une préférence d'affichage (mode clair/sombre) est
         enregistrée localement dans ton navigateur (stockage local), uniquement sur votre
@@ -100,26 +96,26 @@ const NavLinks = [
     </section>
 
     <section class="mb-10">
-        <h2 class="text-xl font-bold mb-3">Tes droits</h2>
-        <p class="leading-relaxed mb-2">
-        Conformément au Règlement Général sur la Protection des Données (RGPD), tu disposes
-        des droits suivants concernant tes données personnelles :
+        <h2 class="text-xl font-bold mb-3" data-i18n="privacy.rights.title">Vos droits</h2>
+        <p class="leading-relaxed mb-2" data-i18n="privacy.rights.introduction">
+        Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposes
+        des droits suivants concernant vos données personnelles :
         </p>
         <ul class="list-disc pl-6 space-y-1 leading-relaxed">
-        <li>Droit d'accès à tes données</li>
-        <li>Droit de rectification</li>
-        <li>Droit à l'effacement</li>
-        <li>Droit d'opposition au traitement</li>
-        <li>Droit à la portabilité de tes données</li>
+        <li data-i18n="privacy.rights.access">Droit d'accès à vos données</li>
+        <li data-i18n="privacy.rights.rectification">Droit de rectification</li>
+        <li data-i18n="privacy.rights.erasure">Droit à l'effacement</li>
+        <li data-i18n="privacy.rights.objection">Droit d'opposition au traitement</li>
+        <li data-i18n="privacy.rights.portability">Droit à la portabilité de vos données</li>
         </ul>
-        <p class="mt-2 leading-relaxed">
+        <p class="mt-2 leading-relaxed" data-i18n="privacy.rights.contact">
         Pour exercer ces droits, contacte-moi à : <strong>hg.gilet@gmail.com</strong>
         </p>
     </section>
 
     <section class="mb-10">
-        <h2 class="text-xl font-bold mb-3">Réclamation</h2>
-        <p class="leading-relaxed">
+        <h2 class="text-xl font-bold mb-3" data-i18n="privacy.complaint.title">Réclamation</h2>
+        <p class="leading-relaxed" data-i18n="privacy.complaint.description">
             Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation
             auprès de la CNIL (Commission Nationale de l'Informatique et des Libertés) :
             <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" class="underline font-semibold">

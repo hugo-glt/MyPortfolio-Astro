@@ -1,10 +1,12 @@
 ---
-import settingsIcon from '../assets/assets_portfolio/settings.svg';
-import MoonIcon from '../assets/assets_portfolio/moon-icon.svg';
-import SunIcon from '../assets/assets_portfolio/sun-icon.svg';
-import LeftArrow from '../assets/assets_portfolio/arrow-left.svg';
+import SettingsIcon from '../components/icons/SettingsIcon.astro';
+import MoonIcon from '../components/icons/MoonIcon.astro';
+import SunIcon from '../components/icons/SunIcon.astro';
+import LeftArrow from '../components/icons/ArrowLeftIcon.astro';
+import { applyLanguage, initLanguage, getStoredLang } from '../i18n/applyLanguage.ts';
 
 export interface NavLink {
+    key: string; 
     label: string;
     href: string;
 }
@@ -16,14 +18,13 @@ interface Props {
 }
 
 const DEFAULT_LINKS: NavLink[] = [
-    { label: 'PRESENTATION', href: '#presentation' },
-    { label: 'PROJECTS', href: '#projects' },
-    { label: 'CONTACTS', href: '#contacts' },
+    { key: 'nav.presentation', label: 'PRÉSENTATION', href: '#presentation' },
+    { key: 'nav.projects', label: 'PROJETS', href: '#projects' },
+    { key: 'nav.contacts', label: 'CONTACTS', href: '#contacts' },
 ];
 
 const {
     links = DEFAULT_LINKS,
-    backArrowSrc = LeftArrow.src,
     pinned = false,
 } = Astro.props;
 
@@ -31,7 +32,7 @@ const isHome = Astro.url.pathname === '/';
 ---
 
 <nav id="navbar" class:list={[
-        'navbar fixed left-0 right-0 h-12 bg-primary-900 transition-all duration-300 ease-out z-100 isolation-isolate',
+        'navbar fixed left-0 right-0 h-12 bg-primary-300 dark:bg-secondary-500 transition-all duration-300 ease-out z-100 isolation-isolate',
         pinned ? 'pinned' : 'bottom-0 top-auto',
     ]}
     data-pinned={pinned}>
@@ -40,13 +41,13 @@ const isHome = Astro.url.pathname === '/';
             href="/#projects"
             class="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-lg hover:bg-white/10 transition"
             aria-label="Back to Home">
-            <img src={backArrowSrc} class="w-6 h-6" alt="Back Arrow" />
+            <LeftArrow class="w-6 h-6" />
         </a>
     )}
     <div class="flex items-center justify-center h-full gap-12">
         {links.map((link) => (
-            <a href={link.href} class="font-bold">
-                {link.label}
+            <a href={link.href} class="font-bold" data-i18n={link.key}>
+            {link.label}
             </a>
         ))}
     </div>
@@ -56,28 +57,32 @@ const isHome = Astro.url.pathname === '/';
         aria-expanded="false"
         aria-controls="settings-menu"
         aria-label="Open Settings Menu">
-        <img src={settingsIcon.src} class="w-8 h-8" alt="" />
+        <SettingsIcon class="w-8 h-8 text-primary-200 dark:text-secondary-200" />
     </button>
     <div id="settings-menu" class="settings-menu flex flex-col items-center justify-center p-3 m-3 " role="menu" aria-orientation="vertical">
         <div class="flex items-center justify-center gap-3">
-            <img src={SunIcon.src} class="w-6 h-6" alt="Toggle Light Mode" />
-            <button id="dark-switch" class="dark-switch relative h-6 w-11 rounded-full bg-gray-300" role="switch" aria-checked="false" aria-label="Toggle Dark Mode">
+            <SunIcon class="w-6 h-6 text-primary-200 dark:text-secondary-200"/>
+            <button id="dark-switch" class="dark-switch relative h-6 w-11 rounded-full bg-primary-200 dark:bg-secondary-200" role="switch" aria-checked="false" aria-label="Toggle Dark Mode">
 			    <span class="switch-knob absolute left-1 top-1 h-4 w-4 rounded-full bg-white"></span>
 		    </button>
-            <img src={MoonIcon.src} class="w-6 h-6" alt="Toggle Dark Mode" />
+            <MoonIcon class="w-6 h-6 text-primary-200 dark:text-secondary-200"/>
         </div>
 	<div class="mt-4">
-		<label class="mb-2 flex flex-col justify-center items-center font-bold">Language</label>
-		<select class="w-full rounded-lg border px-3 py-2">
-			<option>English</option>
-			<option>Français</option>
+		<label class="mb-2 flex flex-col justify-center items-center font-bold " data-i18n="nav.language">Language</label>
+		<select id="lang-select" class="w-full rounded-lg border px-3 py-2">
+			<option value="en">English</option>
+			<option value="fr">Français</option>
 		</select>
         </div>
 	</div>
 
 </nav>
 
+
+
 <script>
+    import { applyLanguage, initLanguage, getStoredLang } from '../i18n/applyLanguage.ts';
+
     const hero = document.getElementById('hero');
     const navbar = document.getElementById('navbar');
     const settingsBtn = document.getElementById('settings-btn') as HTMLButtonElement;
@@ -229,6 +234,16 @@ const isHome = Astro.url.pathname === '/';
 
     observer.observe(hero);
 }
+    // Language switch
+    const langSelect = document.getElementById('lang-select') as HTMLSelectElement;
+
+    initLanguage();
+    if (langSelect) {
+        langSelect.value = getStoredLang();
+        langSelect.addEventListener('change', () => {
+        applyLanguage(langSelect.value as 'fr' | 'en');
+    });
+}
     
 </script>
 
@@ -250,19 +265,16 @@ const isHome = Astro.url.pathname === '/';
         top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
         bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 1;
-    background-color: var(--color-primary-900);
     }
     .navbar {
     top: auto;
     bottom: 0;
     opacity: 1;
-    background-color: var(--color-primary-900);
     }
     .navbar.scrolled {
     top: 0;
     bottom: auto;
     opacity: 1;
-    background-color: var(--color-primary-900);
     }
     .navbar.transitioning {
     opacity: 0.3;   
@@ -274,8 +286,6 @@ const isHome = Astro.url.pathname === '/';
     right: 0.5rem;
     min-width: 180px;
     padding: 0.5rem;
-    background: var(--color-primary-900);
-    border: 1px solid var(--color-primary-500);
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     z-index: 200;
@@ -283,6 +293,10 @@ const isHome = Astro.url.pathname === '/';
     transform: scale(0.95);
     transition: opacity 0.15s ease, transform 0.15s ease;
     pointer-events: none;
+    background-color: var(--color-primary-300);
+    }
+    :global(.dark) .settings-menu {
+    background-color: var(--color-secondary-500);
 }
 
 .settings-menu.open {
@@ -312,7 +326,6 @@ const isHome = Astro.url.pathname === '/';
     display: block;
     padding: 0.5rem 0.75rem;
     border-radius: 4px;
-    color: white;
     font-size: 0.875rem;
     transition: 0.1s;
 }
@@ -341,7 +354,6 @@ const isHome = Astro.url.pathname === '/';
     top: 0;
     bottom: auto;
     opacity: 1;
-    background-color: var(--color-primary-900);
 }
 
 .navbar.pinned .settings-menu {

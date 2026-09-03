@@ -4,13 +4,20 @@
 @theme {
     --font-heading: 'Stack Sans Notch', sans-serif;
     --font-body: 'Archivo Narrow', sans-serif;
-
-    --color-primary-900: #618264;
-    --color-primary-500: #79AC78;
-    --color-primary-100: #B0D9B1;
-
-    --color-secondary-500: #F39E60;
-    --color-secondary-300: #F9F5F0;
+    
+    /*Day color */
+    --color-primary-900: #494037; /*Primary*/
+    --color-primary-500: #b5b9a2; /*Secondary*/
+    --color-primary-300: #7e8c69; /*Accent*/
+    --color-primary-200: #15120f; /*Font*/
+    --color-primary-100: #f6f4f3; /*Background*/
+    --color-primary-50: #F39E60; /*Orange*/
+    /*Night color */
+    --color-secondary-900: #c8bfb6; /*Primary*/
+    --color-secondary-500: #595d46; /*Secondary*/
+    --color-secondary-300: #889673; /*Accent*/
+    --color-secondary-200: #f0edea; /*Font*/
+    --color-secondary-100: #0c0a09; /*Background*/
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
