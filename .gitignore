@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # server cache
 .cache/
+
+# rate limit database
+data/rate-limit.db

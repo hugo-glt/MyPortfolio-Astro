@@ -9,7 +9,7 @@ export const prerender = false;
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
-    secure: true, // true pour le port 465 (SSL)
+    secure: true, // true pour le port 465 (SSL)    
     auth: {
     user: import.meta.env.GMAIL_USER,
     pass: import.meta.env.GMAIL_APP_PASSWORD,
@@ -24,17 +24,32 @@ const contactSchema = z.object({
     website: z.string().optional(), // honeypot
 });
 
-// --- Rate limiting simple en mémoire (par IP) ---
-const submissions = new Map<string, number[]>();
+// --- Rate limiting persistant via SQLite ---
+import Database from 'better-sqlite3';
+import path from 'node:path';
+
+const db = new Database(path.resolve('./data/rate-limit.db'));
+db.exec(`
+    CREATE TABLE IF NOT EXISTS submissions (
+        ip TEXT NOT NULL,
+        ts INTEGER NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_ip_ts ON submissions(ip, ts);
+`);
+
 const RATE_LIMIT = 3;
 const WINDOW_MS = 10 * 60 * 1000;
 
 function isRateLimited(ip: string): boolean {
     const now = Date.now();
-    const timestamps = (submissions.get(ip) || []).filter(t => now - t < WINDOW_MS);
-    if (timestamps.length >= RATE_LIMIT) return true;
-    timestamps.push(now);
-    submissions.set(ip, timestamps);
+    const windowStart = now - WINDOW_MS;
+
+    db.prepare('DELETE FROM submissions WHERE ip = ? AND ts < ?').run(ip, windowStart);
+
+    const count = db.prepare('SELECT COUNT(*) as c FROM submissions WHERE ip = ?').get(ip) as { c: number };
+    if (count.c >= RATE_LIMIT) return true;
+
+    db.prepare('INSERT INTO submissions (ip, ts) VALUES (?, ?)').run(ip, now);
     return false;
 }
 
