@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
 import { z } from 'zod';
+import { GMAIL_USER, GMAIL_APP_PASSWORD, CONTACT_RECIPIENT } from 'astro:env/server';
 
 export const prerender = false;
 
@@ -86,9 +87,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     // 5. Envoi via Gmail SMTP
     await transporter.sendMail({
-        from: `"Portfolio Contact" <${import.meta.env.GMAIL_USER}>`, // doit être ton adresse Gmail (Google le vérifie)
-        to: import.meta.env.CONTACT_RECIPIENT,
-        replyTo: email, // permet de répondre directement au visiteur
+    from: `"Portfolio Contact" <${GMAIL_USER}>`,
+        to: CONTACT_RECIPIENT,
+        replyTo: email,
         subject: `Nouveau message de ${escapeHtml(name)}`,
         html: `
         <h2>Nouveau message depuis le formulaire de contact</h2>
