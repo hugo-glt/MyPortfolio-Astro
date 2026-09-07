@@ -23,6 +23,13 @@ export const translations = {
         'contact.text': "Je reste à votre disposition pour toute question, opportunité ou échange professionnel. N’hésitez pas à me contacter à tout moment ou à suivre mon évolution et mes projets sur GitHub et LinkedIn.",
         'projects.text': "Découvrez les différents projets que j’ai réalisés au cours de ma formation et de mes expériences personnelles. Chaque projet présente les technologies utilisées, les objectifs ainsi que les différentes étapes de sa réalisation. Cette section sera régulièrement mise à jour afin d’accueillir mes futurs projets et nouvelles réalisations, et de suivre mon évolution en tant que développeur.", 
 
+        // ALERTES
+
+        'contact.alert.success': 'Message envoyé avec succès !',
+        'contact.alert.rateLimit': 'Trop de tentatives, réessayez dans quelques minutes.', 
+        'contact.alert.generic': 'Une erreur est survenue, vérifiez les champs et réessayez.', 
+        'contact.alert.network': 'Erreur réseau. Vérifiez votre connexion et réessayez.',
+
         // FOOTER
         
         'full.stack': "Développeur full-stack en formation. Passionné par l'informatique, la conception de logiciels et les applications web.",
@@ -162,6 +169,13 @@ export const translations = {
         'presentation.text.third': 'This portfolio traces my background and presents the various projects I have completed, their design, and the technologies used. It will also be regularly updated to include my future projects and new achievements, reflecting my growth in the field of development.',
         'contact.text': 'I am available at any time for any questions, opportunities, or professional discussions. Feel free to contact me or follow my progress and projects on GitHub and LinkedIn.',
         'projects.text': " Explore the different projects I have developed throughout my studies and personal experiences. Each project showcases the technologies used, its objectives, and the different stages of its development. This section will be regularly updated with my future projects and new achievements, allowing you to follow my growth as a developer.", 
+
+        // ALERTS
+
+        'contact.alert.success': 'Message sent successfully!', 
+        'contact.alert.rateLimit': 'Too many attempts, please try again in a few minutes.', 
+        'contact.alert.generic': 'An error occurred, please check the fields and try again.', 
+        'contact.alert.network': 'Network error. Check your connection and try again.',
 
         // FOOTER
         'full.stack': 'Fullstack developer in training. Passionate about computers, software design, and web applications.',

@@ -142,6 +142,8 @@ import PortfolioImage from '../assets/assets_images/myportfolioastro.png';
 </Layout>
 
 <script>
+	import { t } from '../i18n/applyLanguage.ts';
+
 	const form = document.getElementById('contact-form') as HTMLFormElement;
 const alertBox = document.getElementById('form-alert') as HTMLElement;
 const alertIcon = document.getElementById('form-alert-icon') as HTMLElement;
@@ -187,22 +189,21 @@ form?.addEventListener('submit', async (e) => {
 
     const data = await res.json();
 
-    if (res.ok) {
-    	showAlert('success', 'Message envoyé avec succès !');
+		if (res.ok) {
+    		showAlert('success', t('contact.alert.success'));
     	form.reset();
-    } else {
-    	// Message adapté selon le type d'erreur renvoyé par l'API
-    	const message = data.error === 'Trop de tentatives. Réessaie plus tard.'
-        ? 'Trop de tentatives, réessaie dans quelques minutes.'
-        : 'Une erreur est survenue, vérifie les champs et réessaie.';
+		} else {
+    		const message = data.error === 'RATE_LIMITED'
+       		 ? t('contact.alert.rateLimit')
+        	: t('contact.alert.generic');
     	showAlert('error', message);
-    }
-	} catch (err) {
-    showAlert('error', 'Erreur réseau. Vérifie ta connexion et réessaie.');
-	} finally {
-    submitBtn.disabled = false;
-	}
-});
+		}
+		} catch (err) {
+    		showAlert('error', t('contact.alert.network'));
+		} finally {
+    		submitBtn.disabled = false;
+		}
+	});
 </script>
 
 <style>
