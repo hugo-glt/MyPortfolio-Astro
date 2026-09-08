@@ -11,8 +11,8 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true, // true pour le port 465 (SSL)    
     auth: {
-    user: import.meta.env.GMAIL_USER,
-    pass: import.meta.env.GMAIL_APP_PASSWORD,
+    user: GMAIL_USER,
+    pass: GMAIL_APP_PASSWORD,
     },
 });
 
@@ -65,6 +65,16 @@ function escapeHtml(str: string): string {
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
     try {
+    const origin = request.headers.get('origin');
+    const allowedOrigin = 'http://localhost:4321'; // Remplacez par domaine de production
+
+    if (origin && origin !== allowedOrigin) {
+        return new Response(
+        JSON.stringify({ error: 'Origine non autorisée' }),
+        { status: 403, headers: { 'Content-Type': 'application/json' } }
+        );
+    }
+
     // 1. Rate limiting
     if (isRateLimited(clientAddress)) {
         return new Response(
@@ -79,6 +89,15 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         return new Response(
         JSON.stringify({ error: 'Format invalide' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+    }
+
+    // 2.5 Limite de taille du corps de la requête
+    const contentLength = Number(request.headers.get('content-length') || 0);
+    if (contentLength > 50_000) {
+        return new Response(
+        JSON.stringify({ error: 'Requête trop volumineuse' }),
+        { status: 413, headers: { 'Content-Type': 'application/json' } }
         );
     }
 
@@ -115,13 +134,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         `,
     });
 
-    return new Response(JSON.stringify({ success: true }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(
+        JSON.stringify({ success: true }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+    );
 
     } catch (error) {
-    console.error('Erreur envoi contact:', error); 
+    console.error('Erreur envoi contact:', error);
     return new Response(
         JSON.stringify({ error: 'Erreur serveur' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
