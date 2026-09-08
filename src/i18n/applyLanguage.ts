@@ -36,6 +36,12 @@ function updateTexts(lang: Lang): void {
 });
 }
 
+    export function t(key: TranslationKey): string {
+    const lang = getStoredLang();
+    const text = translations[lang][key as keyof typeof translations[typeof lang]];
+    return text ?? key;
+}
+
 export function applyLanguage(lang: Lang): void {
     document.documentElement.setAttribute('lang', lang);
     localStorage.setItem(LANG_KEY, lang);

@@ -37,17 +37,18 @@ import PortfolioImage from '../assets/assets_images/myportfolioastro.png';
 				<img src={Resume.src} alt="Resume" class="block h-auto w-[clamp(400px,25vw,600px)]"/>
 			</div>
 			<div>
-				<div class="absolute inset-0 flex -translate-y-full items-center justify-center bg-gray-500/60 transition-transform duration-500 ease-out group-hover:translate-y-0">
+				<div class="absolute inset-0 hidden -translate-y-full items-center justify-center bg-gray-500/60 transition-transform duration-500 ease-out group-hover:translate-y-0 md:flex">
 					<a href={ResumeDl} download class="text-lg font-bold text-white" data-i18n="dl.resume">
 						DOWNLOAD RESUME
 					</a>
 				</div>
 			</div>
+			<a href={ResumeDl} download class="mt-3 block text-center text-sm font-bold underline md:hidden" data-i18n="dl.resume">DOWNLOAD RESUME</a>
 		</div>
 			<div class="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
-				<span class="text-2xl text-center" data-i18n="presentation.text.first"></span>
-				<span class="text-2xl text-center" data-i18n="presentation.text.second"></span>
-				<span class="text-2xl text-center" data-i18n="presentation.text.third"></span>
+				<span class="text-lg md:text-2xl text-center" data-i18n="presentation.text.first"></span>
+				<span class="text-lg md:text-2xl text-center" data-i18n="presentation.text.second"></span>
+				<span class="text-lg md:text-2xl text-center" data-i18n="presentation.text.third"></span>
 			</div>
 		</div>
 		<a href="#contacts" class="flex flex-col items-center justify-center mt-18">
@@ -61,12 +62,12 @@ import PortfolioImage from '../assets/assets_images/myportfolioastro.png';
 	<section id="projects" class="mt-20 scroll-mt-15">
 		<div class="flex flex-col items-center justify-center">
 			<div class="flex flex-col w-fit items-center justify-center">
-				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold" data-i18n='nav.projects'>PROJECTS</h3>
+				<h3 class="mt-2 text-lg md:text-2xl text-center font-bold" data-i18n='nav.projects'>PROJECTS</h3>
 				<div class="mt-5 h-1 w-[80%] bg-primary-200 dark:bg-secondary-200"></div>
 			</div>
-			<span class="text-center mt-20 m-30 text-2xl" data-i18n="projects.text"></span>
+			<span class="text-center mt-10 mx-4 md:mx-30 text-lg md:text-2xl" data-i18n="projects.text"></span>
 		</div>
-		<section class="mt-5 m-30">
+		<section class="mt-10 mx-4 md:mx-30">
             <ProjectGrid projects={[
   			{ id: 'a', href: '/project-a', image: PortfolioImage, title: 'MyPortfolio', category: 'Astro' },
   			{ id: 'b', href: '/project-b', image: ComingSoon, title: 'Coming Soon...', category: 'Work in Progress' },
@@ -82,15 +83,15 @@ import PortfolioImage from '../assets/assets_images/myportfolioastro.png';
 	</section>
 </section>
 
-	<section id="contacts" class="mt-20 scroll-mt-15">
+	<section id="contacts" class="mt-20 px-4 md:px-20 scroll-mt-15">
 		<div class="flex flex-col items-center justify-center">
 			<div class="flex flex-col w-fit items-center justify-center">
 				<h3 class="mt-2 text-[clamp(1rem,3vw,5rem)] font-bold">CONTACTS</h3>
 				<div class="mt-5 h-1 w-[80%] bg-primary-200 dark:bg-secondary-200"></div>
 			</div>
 		</div>
-		<div class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
-			<div class="flex flex-col items-center justify-center mt-20">
+		<div class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-10">
+			<div class="flex flex-col items-center justify-center md:mt-5 mt-10">
 				<ProfileIcon class="w-25 h-25 rounded-full"/>
 				<div class="mt-14 text-center">
 					<span class="mx-auto max-w-md text-center" data-i18n="contact.text">
@@ -105,7 +106,7 @@ import PortfolioImage from '../assets/assets_images/myportfolioastro.png';
 					</div>
 				</div>
 			</div>
-			<div class="flex flex-col items-center justify-center mt-20">
+			<div class="flex flex-col items-center justify-center mt-20 md:mt-10 md:px-20">
 				<span class="font-bold" data-i18n='sendme.message'>
 					SEND ME A MESSAGE !
 				</span>
@@ -141,6 +142,8 @@ import PortfolioImage from '../assets/assets_images/myportfolioastro.png';
 </Layout>
 
 <script>
+	import { t } from '../i18n/applyLanguage.ts';
+
 	const form = document.getElementById('contact-form') as HTMLFormElement;
 const alertBox = document.getElementById('form-alert') as HTMLElement;
 const alertIcon = document.getElementById('form-alert-icon') as HTMLElement;
@@ -157,13 +160,11 @@ function showAlert(type: 'success' | 'error', message: string) {
   	alertIcon.textContent = type === 'success' ? '✓' : '✕';
   	alertText.textContent = message;
 
-  // Disparition automatique après 6 secondes (seulement pour un succès)
-  	if (type === 'success') {
+  	// Disparition automatique après 6 secondes 
    		hideTimeout = setTimeout(() => {
       	alertBox.hidden = true;
     }, 6000);
   }
-}
 
 form?.addEventListener('submit', async (e) => {
   	e.preventDefault();
@@ -188,22 +189,21 @@ form?.addEventListener('submit', async (e) => {
 
     const data = await res.json();
 
-    if (res.ok) {
-    	showAlert('success', 'Message envoyé avec succès !');
+		if (res.ok) {
+    		showAlert('success', t('contact.alert.success'));
     	form.reset();
-    } else {
-    	// Message adapté selon le type d'erreur renvoyé par l'API
-    	const message = data.error === 'Trop de tentatives. Réessaie plus tard.'
-        ? 'Trop de tentatives, réessaie dans quelques minutes.'
-        : 'Une erreur est survenue, vérifie les champs et réessaie.';
+		} else {
+    		const message = data.error === 'RATE_LIMITED'
+       		 ? t('contact.alert.rateLimit')
+        	: t('contact.alert.generic');
     	showAlert('error', message);
-    }
-	} catch (err) {
-    showAlert('error', 'Erreur réseau. Vérifie ta connexion et réessaie.');
-	} finally {
-    submitBtn.disabled = false;
-	}
-});
+		}
+		} catch (err) {
+    		showAlert('error', t('contact.alert.network'));
+		} finally {
+    		submitBtn.disabled = false;
+		}
+	});
 </script>
 
 <style>

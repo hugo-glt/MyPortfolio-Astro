@@ -61,7 +61,7 @@ const projectSlides = [
   <section id="hero">
     <div class="relative">
       <img src={PAimage1.src} alt="Project A Picture" class="relative w-full" />
-      <div class="absolute left-[3%] top-1/2 -translate-y-1/2 font-bold">
+      <div class="absolute left-[3%] top-1/2 max-w-[90%] -translate-y-1/2 font-bold">
         <h1 class="text-[clamp(2.5rem,8vw,12rem)] leading-none">MyPORFOLIO</h1>
         <h3 class="mt-2 text-[clamp(1rem,3vw,5rem)]">ASTRO</h3>
       </div>
@@ -78,19 +78,13 @@ const projectSlides = [
       <div class="mt-5 h-1 w-[80%] bg-primary-200 dark:bg-secondary-200"></div>
     </div>
     <div
-      class="mx-auto mt-20 max-w-7xl px-6 flex flex-col items-center text-center"
-    >
-      <div class="space-y-8 text-center text-lg leading-relaxed md:text-xl">
-        <p class="text-2xl text-center" data-i18n="pa.presentation.text.first">
-        </p>
-        <p class="text-2xl text-center" data-i18n="pa.presentation.text.second">
-        </p>
-        <p class="text-2xl text-center" data-i18n="pa.presentation.text.third">
-        </p>
-        <p class="text-2xl text-center" data-i18n="pa.presentation.text.fourth">
-        </p>
-        <p class="text-2xl text-center" data-i18n="pa.presentation.text.fifth">
-        </p>
+      class="mx-auto mt-20 max-w-7xl px-6 flex flex-col items-center text-center">
+      <div class="space-y-8 text-center text-lg leading-relaxed md:text-2xl">
+        <p data-i18n="pa.presentation.text.first"></p>
+        <p data-i18n="pa.presentation.text.second"></p>
+        <p data-i18n="pa.presentation.text.third"></p>
+        <p data-i18n="pa.presentation.text.fourth"></p>
+        <p data-i18n="pa.presentation.text.fifth"></p>
       </div>
     </div>
     <a
