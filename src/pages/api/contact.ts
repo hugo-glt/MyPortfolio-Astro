@@ -66,7 +66,7 @@ function escapeHtml(str: string): string {
 export const POST: APIRoute = async ({ request, clientAddress }) => {
     try {
     const origin = request.headers.get('origin');
-    const allowedOrigin = 'https://hugo-gilet.fr'; // Remplacez par domaine de production
+    const allowedOrigin = 'https://hugo-gilet.fr';
 
     if (origin && origin !== allowedOrigin) {
         return new Response(
